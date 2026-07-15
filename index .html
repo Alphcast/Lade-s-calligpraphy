@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lade's Calligraphy | Beautiful Words. Timeless Faith. Made Just For You.</title>
+  <meta name="description" content="Handcrafted Arabic calligraphy art, bespoke frames, customized gift items, and wedding invitations. Based in Egbeda, Lagos. Every piece crafted with faith and love." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --g-darkest: #091a10;
+      --g-dark:    #0f2d1f;
+      --g-primary: #1a4731;
+      --g-medium:  #2d6a4f;
+      --g-light:   #40916c;
+      --cream:     #f7f2e7;
+      --cream-dk:  #ede8db;
+      --gold:      #c4963b;
+      --gold-lt:   #d4ab55;
+      --gold-dk:   #a67c2c;
+      --white:     #ffffff;
+      --text-body: #3a3a3a;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 24px;
+      --shadow:    0 20px 60px rgba(0,0,0,.15);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:'Inter',sans-serif; background:var(--cream); color:var(--text-body); overflow-x:hidden; }
+    img { display:block; max-width:100%; }
+    a { text-decoration:none; }
+    button { font-family:inherit; cursor:pointer; }
+
+    /* ─── UTILITY ────────────────────────────────────────────── */
+    .container { max-width:1180px; margin:0 auto; padding:0 1.5rem; }
+    .section    { padding:6rem 1.5rem; }
+    .section-inner { max-width:1180px; margin:0 auto; }
+
+    .eyebrow {
+      font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+      font-weight:600; color:var(--gold);
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+      margin-bottom:1.1rem;
+    }
+    .eyebrow::before, .eyebrow::after {
+      content:''; display:block; width:32px; height:1px; background:var(--gold);
+    }
+    .eyebrow.left { justify-content:flex-start; }
+
+    .section-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.9rem,3.8vw,2.9rem);
+      line-height:1.2; color:var(--g-dark); margin-bottom:.85rem;
+    }
+    .section-sub {
+      font-size:1rem; line-height:1.75; color:#5a5a5a;
+      max-width:580px; margin:0 auto;
+    }
+    .section-header { text-align:center; margin-bottom:3.5rem; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.82rem 1.9rem; border-radius:40px; font-size:.92rem;
+      font-weight:600; transition:all .28s ease; border:2px solid transparent;
+    }
+    .btn-gold {
+      background:var(--gold); color:var(--g-dark); border-color:var(--gold);
+    }
+    .btn-gold:hover {
+      background:var(--gold-lt); border-color:var(--gold-lt);
+      transform:translateY(-2px); box-shadow:0 10px 28px rgba(196,150,59,.35);
+    }
+    .btn-outline-cream {
+      background:transparent; color:var(--cream); border-color:rgba(247,242,231,.4);
+    }
+    .btn-outline-cream:hover { border-color:var(--cream); background:rgba(247,242,231,.08); }
+    .btn-wa {
+      background:#25D366; color:#fff; border-color:#25D366;
+    }
+    .btn-wa:hover { background:#1ebe5d; transform:translateY(-2px); box-shadow:0 10px 28px rgba(37,211,102,.35); }
+
+    /* ─── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:900;
+      padding:1.2rem 2rem; display:flex; align-items:center; justify-content:space-between;
+      transition:all .3s ease;
+    }
+    .navbar.scrolled {
+      background:rgba(9,26,16,.96); backdrop-filter:blur(14px);
+      padding:.8rem 2rem; box-shadow:0 2px 24px rgba(0,0,0,.35);
+    }
+    .nav-logo {
+      font-family:'Playfair Display',serif; font-size:1.55rem; font-weight:700;
+      color:var(--cream);
+    }
+    .nav-logo span { color:var(--gold); font-style:italic; }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a {
+      color:rgba(247,242,231,.85); font-size:.85rem; font-weight:500;
+      letter-spacing:.04em; text-transform:uppercase; transition:color .25s;
+    }
+    .nav-links a:hover { color:var(--gold); }
+    .nav-cta {
+      background:var(--gold); color:var(--g-dark) !important;
+      padding:.42rem 1.2rem; border-radius:20px; font-weight:700 !important;
+    }
+    .nav-cta:hover { background:var(--gold-lt) !important; }
+    .hamburger {
+      display:none; flex-direction:column; gap:5px; background:none; border:none;
+    }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--cream); transition:.3s; }
+
+    /* ─── MOBILE MENU ────────────────────────────────────────── */
+    .mobile-menu {
+      position:fixed; inset:0; z-index:950;
+      background:rgba(9,26,16,.98); backdrop-filter:blur(16px);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2rem;
+      transform:translateX(-100%); transition:transform .4s cubic-bezier(.77,0,.18,1);
+    }
+    .mobile-menu.open { transform:translateX(0); }
+    .mobile-menu a {
+      font-family:'Playfair Display',serif; font-size:2rem; color:var(--cream); transition:color .2s;
+    }
+    .mobile-menu a:hover { color:var(--gold); }
+    .mob-close {
+      position:absolute; top:1.5rem; right:1.5rem;
+      background:none; border:none; color:var(--cream); font-size:1.6rem;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    .hero {
+      min-height:100vh; background:var(--g-dark); position:relative;
+      display:flex; align-items:center; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      opacity:.15;
+    }
+    /* Islamic geometric SVG pattern overlay */
+    .hero-pattern {
+      position:absolute; inset:0;
+      background-image:
+        radial-gradient(circle at 15% 50%, rgba(196,150,59,.07) 0%, transparent 55%),
+        radial-gradient(circle at 85% 15%, rgba(196,150,59,.05) 0%, transparent 45%);
+    }
+    .hero-geo {
+      position:absolute; right:-80px; top:50%; transform:translateY(-50%);
+      width:560px; height:560px; opacity:.04;
+    }
+    .hero-content {
+      position:relative; z-index:2; width:100%;
+      display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
+      padding:8rem 2rem 5rem; max-width:1180px; margin:0 auto;
+    }
+    .hero-text .hero-eyebrow {
+      color:var(--gold); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+      font-weight:600; margin-bottom:1.6rem;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .hero-text .hero-eyebrow::before, .hero-text .hero-eyebrow::after {
+      content:''; display:block; width:28px; height:1px; background:var(--gold);
+    }
+    .hero-text h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.5rem,5vw,4.4rem); line-height:1.1; color:var(--cream);
+      margin-bottom:1.4rem;
+    }
+    .hero-text h1 em { color:var(--gold); font-style:italic; }
+    .hero-text p {
+      color:rgba(247,242,231,.72); font-size:1.05rem; line-height:1.78;
+      max-width:460px; margin-bottom:2.4rem;
+    }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+    /* Hero visual side */
+    .hero-visual { display:flex; justify-content:center; align-items:center; position:relative; }
+    .hero-ring {
+      width:360px; height:360px; border-radius:50%;
+      border:3px solid var(--gold); padding:6px; position:relative;
+      background:linear-gradient(135deg, rgba(196,150,59,.15), transparent);
+    }
+    .hero-ring img {
+      width:100%; height:100%; border-radius:50%; object-fit:cover;
+      border:3px solid var(--g-dark);
+    }
+    .hero-ring::before {
+      content:''; position:absolute; inset:-12px; border-radius:50%;
+      border:1px dashed rgba(196,150,59,.35);
+    }
+    .hero-badge {
+      position:absolute; bottom:-10px; right:10px;
+      width:118px; height:118px; border-radius:50%;
+      background:var(--g-dark); border:2px solid var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      flex-direction:column; text-align:center; padding:1rem; gap:.25rem;
+    }
+    .hero-badge .arabic { font-size:1.1rem; color:var(--gold); line-height:1.4; }
+    .hero-badge .transl { font-size:.55rem; color:rgba(247,242,231,.55); letter-spacing:.03em; }
+    .hero-scroll {
+      position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+      z-index:2; display:flex; flex-direction:column; align-items:center; gap:.4rem;
+      color:rgba(247,242,231,.45); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
+      animation:float 2.5s ease-in-out infinite;
+    }
+    .hero-scroll i { font-size:.85rem; }
+    @keyframes float { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(6px); } }
+
+    /* ─── MARQUEE ────────────────────────────────────────────── */
+    .marquee-band { background:var(--gold); padding:.7rem 0; overflow:hidden; }
+    .marquee-track { display:flex; gap:0; animation:scroll-l 22s linear infinite; width:max-content; }
+    .marquee-item {
+      color:var(--g-dark); font-size:.72rem; font-weight:700;
+      letter-spacing:.18em; text-transform:uppercase;
+      padding:0 2.5rem; white-space:nowrap; display:flex; align-items:center; gap:2.5rem;
+    }
+    .marquee-item::after { content:'✦'; font-size:.65rem; }
+    @keyframes scroll-l { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    .about { background:var(--g-dark); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .about-images { position:relative; height:480px; }
+    .about-img-main {
+      position:absolute; top:0; left:0; width:70%; height:82%;
+      object-fit:cover; border-radius:var(--radius-sm);
+      border:3px solid var(--gold); background:var(--g-medium);
+    }
+    .about-img-sec {
+      position:absolute; bottom:0; right:0; width:52%; height:52%;
+      object-fit:cover; border-radius:var(--radius-sm);
+      border:3px solid var(--g-medium); background:var(--g-primary);
+    }
+    .about-corner {
+      position:absolute; top:-12px; left:-12px;
+      width:52px; height:52px;
+      border-top:3px solid var(--gold); border-left:3px solid var(--gold);
+    }
+    .about-corner-br {
+      position:absolute; bottom:-12px; right:-12px;
+      width:52px; height:52px;
+      border-bottom:3px solid var(--gold); border-right:3px solid var(--gold);
+    }
+    .about-text .section-title { color:var(--cream); text-align:left; }
+    .about-text .section-title em { color:var(--gold); }
+    .about-text p { color:rgba(247,242,231,.75); line-height:1.8; margin-bottom:1.25rem; }
+    .about-stats {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;
+      margin-top:2.5rem; padding-top:2rem;
+      border-top:1px solid rgba(196,150,59,.25);
+    }
+    .stat h3 { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--gold); }
+    .stat p { font-size:.82rem; color:rgba(247,242,231,.5); margin-top:.1rem; }
+
+    /* ─── SERVICES ───────────────────────────────────────────── */
+    .services { background:var(--cream); }
+    .services-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem; }
+    .service-card {
+      background:var(--white); border-radius:var(--radius-md);
+      padding:2.2rem 2rem; border:1px solid rgba(196,150,59,.15);
+      position:relative; overflow:hidden; transition:all .35s ease;
+    }
+    .service-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg, var(--g-primary), var(--gold));
+      transform:scaleX(0); transform-origin:left; transition:transform .35s ease;
+    }
+    .service-card:hover { transform:translateY(-6px); box-shadow:0 18px 50px rgba(26,71,49,.12); border-color:rgba(196,150,59,.35); }
+    .service-card:hover::after { transform:scaleX(1); }
+    .svc-icon {
+      width:54px; height:54px; border-radius:50%; background:var(--g-primary);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:1.25rem; margin-bottom:1.3rem;
+      transition:all .3s ease;
+    }
+    .service-card:hover .svc-icon { background:var(--gold); color:var(--white); }
+    .service-card h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--g-dark); margin-bottom:.65rem; }
+    .service-card p { color:#666; line-height:1.7; font-size:.93rem; }
+    .svc-footer {
+      display:flex; align-items:center; justify-content:space-between;
+      margin-top:1.5rem; padding-top:1.2rem; border-top:1px solid #eee;
+    }
+    .svc-price { color:var(--gold); font-weight:700; font-size:.88rem; }
+    .svc-btn {
+      background:var(--g-primary); color:var(--cream); border:none;
+      padding:.38rem 1rem; border-radius:20px; font-size:.8rem; font-weight:600;
+      transition:all .25s;
+    }
+    .svc-btn:hover { background:var(--gold); color:var(--g-dark); }
+
+    /* ─── GALLERY ────────────────────────────────────────────── */
+    .gallery { background:var(--g-darkest); }
+    .gallery .section-title { color:var(--cream); }
+    .gallery .section-title em { color:var(--gold); font-style:italic; }
+    .gallery .section-sub { color:rgba(247,242,231,.62); }
+    .gallery-grid {
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      grid-auto-rows:180px;
+      gap:.6rem;
+    }
+    .gal-item {
+      position:relative; overflow:hidden; border-radius:var(--radius-sm);
+      cursor:pointer; background:var(--g-primary);
+    }
+    .gal-item:nth-child(1) { grid-column:span 2; }
+    .gal-item img {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .55s ease; will-change:transform;
+    }
+    .gal-item:hover img { transform:scale(1.08); }
+    .gal-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(9,26,16,.92) 0%, transparent 55%);
+      opacity:0; transition:opacity .35s; display:flex; align-items:flex-end; padding:1.2rem;
+    }
+    .gal-item:hover .gal-overlay { opacity:1; }
+    .gal-meta h4 { font-family:'Playfair Display',serif; color:var(--cream); font-size:.95rem; }
+    .gal-meta p { color:var(--gold); font-size:.75rem; margin-top:.15rem; }
+    .gal-zoom {
+      position:absolute; top:.75rem; right:.75rem;
+      width:34px; height:34px; border-radius:50%;
+      background:rgba(196,150,59,.9); color:white; font-size:.75rem;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .gal-item:hover .gal-zoom { opacity:1; }
+
+    /* ─── PROCESS ────────────────────────────────────────────── */
+    .process { background:var(--cream-dk); }
+    .process-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:2rem; position:relative; }
+    .process-steps::before {
+      content:''; position:absolute; top:28px; left:calc(12.5% + 4px); right:calc(12.5% + 4px);
+      height:1px; background:linear-gradient(90deg, var(--gold) 0%, rgba(196,150,59,.3) 100%);
+    }
+    .proc-step { text-align:center; position:relative; z-index:1; }
+    .proc-num {
+      width:56px; height:56px; border-radius:50%;
+      background:var(--g-primary); color:var(--gold);
+      font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700;
+      border:2.5px solid var(--gold); display:flex; align-items:center; justify-content:center;
+      margin:0 auto 1.3rem;
+    }
+    .proc-step h3 { font-family:'Playfair Display',serif; font-size:1.08rem; color:var(--g-dark); margin-bottom:.55rem; }
+    .proc-step p { font-size:.88rem; color:#666; line-height:1.6; }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────── */
+    .testimonials { background:var(--g-primary); }
+    .testimonials .section-title { color:var(--cream); }
+    .testimonials .section-title em { color:var(--gold); font-style:italic; }
+    .testimonials .section-sub { color:rgba(247,242,231,.65); }
+    .testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; }
+    .testi-card {
+      background:rgba(255,255,255,.05); border:1px solid rgba(196,150,59,.2);
+      border-radius:var(--radius-md); padding:1.9rem; transition:all .3s ease;
+    }
+    .testi-card:hover { background:rgba(255,255,255,.09); border-color:rgba(196,150,59,.45); }
+    .testi-stars { color:var(--gold); margin-bottom:.9rem; letter-spacing:.1em; }
+    .testi-text { color:rgba(247,242,231,.82); line-height:1.72; font-style:italic; font-size:.93rem; margin-bottom:1.4rem; }
+    .testi-author { display:flex; align-items:center; gap:.7rem; }
+    .testi-av {
+      width:42px; height:42px; border-radius:50%; background:var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-size:1rem; font-weight:700;
+      color:var(--g-dark); flex-shrink:0;
+    }
+    .testi-info h5 { color:var(--cream); font-size:.92rem; font-weight:600; }
+    .testi-info span { color:var(--gold); font-size:.76rem; }
+
+    /* ─── FAQ ────────────────────────────────────────────────── */
+    .faq { background:var(--cream); }
+    .faq-list { max-width:740px; margin:0 auto; }
+    .faq-item { border-bottom:1px solid rgba(26,71,49,.12); }
+    .faq-q {
+      width:100%; background:none; border:none; padding:1.4rem 0;
+      display:flex; align-items:center; justify-content:space-between;
+      text-align:left; cursor:pointer;
+      font-family:'Playfair Display',serif; font-size:1.02rem; color:var(--g-dark); font-weight:600;
+    }
+    .faq-icon {
+      width:28px; height:28px; flex-shrink:0; border-radius:50%;
+      background:var(--g-primary); color:var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.8rem; transition:all .3s ease;
+    }
+    .faq-item.active .faq-icon { background:var(--gold); color:white; transform:rotate(45deg); }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+    .faq-item.active .faq-a { max-height:200px; }
+    .faq-a p { padding-bottom:1.4rem; color:#5a5a5a; line-height:1.72; font-size:.93rem; }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    .contact { background:var(--g-dark); }
+    .contact .section-title { color:var(--cream); }
+    .contact .section-title em { color:var(--gold); font-style:italic; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+    .contact-info h3 { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--cream); margin-bottom:.9rem; }
+    .contact-info > p { color:rgba(247,242,231,.68); line-height:1.75; margin-bottom:2rem; }
+    .contact-items { display:flex; flex-direction:column; gap:1.1rem; }
+    .ci { display:flex; align-items:center; gap:.9rem; }
+    .ci-icon {
+      width:42px; height:42px; flex-shrink:0;
+      background:rgba(196,150,59,.12); border:1px solid rgba(196,150,59,.3);
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:.95rem;
+    }
+    .ci strong { display:block; color:rgba(247,242,231,.5); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.12rem; }
+    .ci a, .ci span { color:rgba(247,242,231,.85); font-size:.95rem; }
+    .ci a:hover { color:var(--gold); }
+
+    /* ─── CONTACT FORM ───────────────────────────────────────── */
+    .form-box {
+      background:rgba(255,255,255,.04); border:1px solid rgba(196,150,59,.18);
+      border-radius:var(--radius-md); padding:2.2rem;
+    }
+    .form-box h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:var(--cream); margin-bottom:1.6rem; }
+    .fg { margin-bottom:1.1rem; }
+    .fg label {
+      display:block; color:rgba(247,242,231,.55); font-size:.72rem;
+      letter-spacing:.06em; text-transform:uppercase; margin-bottom:.4rem;
+    }
+    .fg input, .fg select, .fg textarea {
+      width:100%; background:rgba(255,255,255,.06);
+      border:1px solid rgba(196,150,59,.2); border-radius:var(--radius-sm);
+      padding:.78rem 1rem; color:var(--cream);
+      font-family:'Inter',sans-serif; font-size:.92rem; outline:none;
+      transition:border-color .25s;
+    }
+    .fg select option { background:var(--g-dark); color:var(--cream); }
+    .fg input::placeholder, .fg textarea::placeholder { color:rgba(247,242,231,.25); }
+    .fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--gold); }
+    .fg textarea { height:110px; resize:vertical; }
+    .form-submit {
+      width:100%; background:var(--gold); color:var(--g-dark);
+      border:none; padding:.88rem; border-radius:40px;
+      font-weight:700; font-size:.95rem; display:flex; align-items:center;
+      justify-content:center; gap:.5rem; transition:all .28s ease; margin-top:.4rem;
+    }
+    .form-submit:hover { background:var(--gold-lt); transform:translateY(-2px); box-shadow:0 10px 28px rgba(196,150,59,.4); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    .footer {
+      background:var(--g-darkest); padding:4rem 1.5rem 1.5rem;
+      border-top:1px solid rgba(196,150,59,.1);
+    }
+    .footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:4rem; margin-bottom:3rem; padding-bottom:2.5rem; border-bottom:1px solid rgba(196,150,59,.1); max-width:1180px; margin-left:auto; margin-right:auto; }
+    .footer-brand h3 { font-family:'Playfair Display',serif; font-size:1.45rem; color:var(--cream); margin-bottom:.85rem; }
+    .footer-brand h3 span { color:var(--gold); font-style:italic; }
+    .footer-brand p { color:rgba(247,242,231,.5); font-size:.88rem; line-height:1.7; margin-bottom:1.3rem; }
+    .socials { display:flex; gap:.6rem; }
+    .soc-link {
+      width:34px; height:34px; border-radius:50%;
+      background:rgba(196,150,59,.1); border:1px solid rgba(196,150,59,.25);
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:.82rem; transition:all .25s;
+    }
+    .soc-link:hover { background:var(--gold); color:var(--g-dark); }
+    .footer-col h4 { color:var(--cream); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:1.1rem; }
+    .footer-col ul { list-style:none; display:flex; flex-direction:column; gap:.65rem; }
+    .footer-col a { color:rgba(247,242,231,.5); font-size:.88rem; transition:color .25s; }
+    .footer-col a:hover { color:var(--gold); }
+    .footer-bottom { text-align:center; color:rgba(247,242,231,.3); font-size:.78rem; max-width:1180px; margin:0 auto; }
+    .footer-bottom span { color:var(--gold); }
+
+    /* ─── WHATSAPP WIDGET ────────────────────────────────────── */
+    .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:999; }
+    .wa-btn {
+      width:58px; height:58px; border-radius:50%;
+      background:#25D366; border:none; color:white; font-size:1.55rem;
+      display:flex; align-items:center; justify-content:center;
+      box-shadow:0 4px 20px rgba(37,211,102,.4); transition:all .3s; position:relative;
+    }
+    .wa-btn:hover { transform:scale(1.1); }
+    .wa-pulse {
+      position:absolute; inset:-3px; border-radius:50%;
+      border:2px solid #25D366; animation:pulse 2.2s ease-out infinite;
+    }
+    @keyframes pulse { 0%{transform:scale(1);opacity:.9} 100%{transform:scale(1.6);opacity:0} }
+    .wa-notif {
+      position:absolute; top:-4px; right:-4px;
+      width:18px; height:18px; background:#e74c3c; border-radius:50%;
+      border:2px solid white; font-size:.65rem; color:white; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .wa-chat {
+      position:absolute; bottom:72px; right:0; width:310px;
+      background:white; border-radius:16px;
+      box-shadow:0 12px 50px rgba(0,0,0,.22); overflow:hidden;
+      display:none; animation:slideUp .3s ease;
+    }
+    @keyframes slideUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+    .wa-chat.open { display:block; }
+    .chat-head {
+      background:#075e54; padding:.9rem 1.1rem;
+      display:flex; align-items:center; gap:.7rem; color:white;
+    }
+    .chat-av {
+      width:40px; height:40px; border-radius:50%; background:var(--gold);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Playfair Display',serif; font-weight:700; color:#075e54; font-size:.95rem; flex-shrink:0;
+    }
+    .chat-head-info h4 { font-size:.9rem; font-weight:600; }
+    .chat-head-info span { font-size:.7rem; color:rgba(255,255,255,.75); display:flex; align-items:center; gap:.25rem; }
+    .chat-head-info span::before { content:''; width:7px; height:7px; background:#4ade80; border-radius:50%; display:inline-block; }
+    .chat-x { margin-left:auto; background:none; border:none; color:white; font-size:1rem; padding:.25rem; }
+    .chat-body { background:#ece5dd; padding:1.1rem; }
+    .chat-bubble {
+      background:white; border-radius:10px 10px 10px 2px;
+      padding:.7rem .9rem; font-size:.84rem; color:#333; line-height:1.5;
+      max-width:88%; box-shadow:0 1px 3px rgba(0,0,0,.1);
+    }
+    .chat-bubble .ct { font-size:.66rem; color:#aaa; text-align:right; margin-top:.3rem; }
+    .chat-foot { padding:.9rem 1.1rem; background:white; }
+    .chat-foot p { font-size:.78rem; color:#666; margin-bottom:.6rem; }
+    .chat-opts { display:flex; flex-direction:column; gap:.42rem; }
+    .chat-opt {
+      background:#e7f8ee; border:1px solid #c3e6d0; color:#075e54;
+      padding:.45rem .8rem; border-radius:20px; font-size:.8rem;
+      font-weight:500; text-align:left; transition:all .2s;
+    }
+    .chat-opt:hover { background:#075e54; color:white; border-color:#075e54; }
+
+    /* ─── LIGHTBOX ───────────────────────────────────────────── */
+    .lightbox {
+      position:fixed; inset:0; background:rgba(0,0,0,.92);
+      z-index:1100; display:none; align-items:center; justify-content:center;
+    }
+    .lightbox.open { display:flex; }
+    .lb-img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; }
+    .lb-close {
+      position:absolute; top:1.25rem; right:1.5rem;
+      color:white; font-size:1.9rem; background:none; border:none; line-height:1;
+    }
+
+    /* ─── SCROLL TOP ─────────────────────────────────────────── */
+    .scr-top {
+      position:fixed; bottom:2rem; left:2rem; width:42px; height:42px;
+      background:var(--g-primary); border:1px solid var(--gold); border-radius:50%;
+      color:var(--gold); font-size:.9rem; display:none; align-items:center; justify-content:center;
+      z-index:900; transition:all .25s;
+    }
+    .scr-top.vis { display:flex; }
+    .scr-top:hover { background:var(--gold); color:var(--g-dark); }
+
+    /* ─── SCROLL ANIMATIONS ──────────────────────────────────── */
+    .fade-up { opacity:0; transform:translateY(28px); transition:opacity .6s ease, transform .6s ease; }
+    .fade-up.vis { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width:1024px) {
+      .hero-content { grid-template-columns:1fr; max-width:680px; }
+      .hero-visual { display:none; }
+      .about-grid { grid-template-columns:1fr; gap:3rem; }
+      .about-images { display:none; }
+      .testi-grid { grid-template-columns:1fr 1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
+    }
+    @media (max-width:768px) {
+      .nav-links { display:none; }
+      .hamburger { display:flex; padding:.5rem; }
+      .section { padding:3.5rem 1.1rem; }
+      .hero-content { padding:6.5rem 1.1rem 3.5rem; gap:2.5rem; }
+      .hero-text h1 { font-size:clamp(2rem,7vw,3rem); }
+      .hero-text p { font-size:.95rem; }
+      .hero-btns { flex-direction:column; }
+      .hero-btns .btn { width:100%; justify-content:center; padding:1rem 1.5rem; }
+      .services-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .service-card { padding:1.6rem 1.4rem; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; gap:.5rem; }
+      .gal-item:nth-child(1) { grid-column:span 2; }
+      .process-steps { grid-template-columns:1fr 1fr; gap:1.5rem; }
+      .process-steps::before { display:none; }
+      .testi-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .testi-card { padding:1.4rem; }
+      .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+      .form-box { padding:1.5rem; }
+      .footer-grid { grid-template-columns:1fr; gap:2rem; margin-bottom:2rem; }
+      .footer { padding:3rem 1.1rem 1.2rem; }
+      .about-stats { grid-template-columns:repeat(3,1fr); gap:1rem; }
+      .stat h3 { font-size:1.7rem; }
+      .stat p { font-size:.75rem; }
+      .wa-chat { width:calc(100vw - 2rem); max-width:310px; right:0; bottom:68px; }
+      .wa-float { bottom:1.2rem; right:1.2rem; }
+      .wa-btn { width:52px; height:52px; font-size:1.4rem; }
+      .marquee-item { font-size:.65rem; padding:0 1.8rem; }
+      .eyebrow { font-size:.65rem; }
+      .section-title { font-size:clamp(1.6rem,5vw,2.2rem); }
+      .section-sub { font-size:.9rem; }
+      .faq-q { font-size:.95rem; padding:1.1rem 0; }
+      .scr-top { bottom:1.2rem; left:1.2rem; width:38px; height:38px; }
+    }
+    @media (max-width:480px) {
+      .section { padding:3rem 1rem; }
+      .hero-content { padding:6rem 1rem 3rem; }
+      .hero-text h1 { font-size:clamp(1.7rem,8vw,2.5rem); }
+      .gallery-grid { grid-template-columns:1fr; grid-auto-rows:200px; }
+      .gal-item:nth-child(1) { grid-column:span 1; }
+      .process-steps { grid-template-columns:1fr; gap:2rem; }
+      .about-stats { grid-template-columns:1fr 1fr; }
+      .about-stats .stat:last-child { grid-column:span 2; text-align:center; }
+      .contact-items { gap:.9rem; }
+      .ci { gap:.7rem; }
+      .ci-icon { width:38px; height:38px; font-size:.85rem; }
+      .ci a, .ci span { font-size:.88rem; }
+      .form-box h3 { font-size:1.2rem; }
+      .fg input, .fg select, .fg textarea { padding:.7rem .85rem; font-size:.88rem; }
+      .form-submit { padding:.8rem; font-size:.9rem; }
+      .footer-brand h3 { font-size:1.25rem; }
+      .footer-col ul { gap:.5rem; }
+      .footer-col a { font-size:.82rem; }
+      .footer-bottom { font-size:.7rem; }
+      .wa-chat { width:calc(100vw - 1.5rem); right:-.5rem; }
+      .chat-head { padding:.75rem .9rem; }
+      .chat-body { padding:.9rem; }
+      .chat-foot { padding:.75rem .9rem; }
+      .chat-opt { padding:.4rem .7rem; font-size:.78rem; }
+      .marquee-item { font-size:.6rem; padding:0 1.5rem; }
+      .nav-logo { font-size:1.3rem; }
+      .hero-eyebrow { font-size:.62rem; letter-spacing:.18em; }
+      .hero-eyebrow::before, .hero-eyebrow::after { width:18px; }
+      .about-stats .stat:last-child { grid-column:span 2; }
+    }
+    @media (max-width:360px) {
+      .hero-text h1 { font-size:1.6rem; }
+      .section-title { font-size:1.5rem; }
+      .service-card h3 { font-size:1.1rem; }
+      .btn { padding:.7rem 1.4rem; font-size:.85rem; }
+      .wa-chat { width:calc(100vw - 1rem); right:0; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════ MOBILE MENU ══════════════════════════════════════════ -->
+<div class="mobile-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMob()" aria-label="Close menu"><i class="fas fa-times"></i></button>
+  <a href="#about"        onclick="toggleMob()">About</a>
+  <a href="#services"     onclick="toggleMob()">Services</a>
+  <a href="#gallery"      onclick="toggleMob()">Gallery</a>
+  <a href="#testimonials" onclick="toggleMob()">Reviews</a>
+  <a href="#faq"          onclick="toggleMob()">FAQ</a>
+  <a href="#contact"      onclick="toggleMob()" style="color:var(--gold)">Order Now</a>
+</div>
+
+<!-- ══════ NAVBAR ═══════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <a href="#home" class="nav-logo">Lade's <span>Calligraphy</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMob()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════ HERO ══════════════════════════════════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-pattern" aria-hidden="true"></div>
+
+  <!-- Geometric SVG ornament -->
+  <svg class="hero-geo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#c4963b" stroke-width="1">
+      <polygon points="200,20 380,110 380,290 200,380 20,290 20,110" />
+      <polygon points="200,60 340,130 340,270 200,340 60,270 60,130" />
+      <polygon points="200,100 300,150 300,250 200,300 100,250 100,150" />
+      <circle cx="200" cy="200" r="120" /><circle cx="200" cy="200" r="80" /><circle cx="200" cy="200" r="40" />
+      <line x1="200" y1="20" x2="200" y2="380"/><line x1="20" y1="200" x2="380" y2="200"/>
+      <line x1="63" y1="63" x2="337" y2="337"/><line x1="337" y1="63" x2="63" y2="337"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-text fade-up">
+      <div class="hero-eyebrow">Custom Made · Faith Inspired · Made With Love</div>
+      <h1>Beautiful Words.<br><em>Timeless Faith.</em><br>Made Just For You.</h1>
+      <p>Handcrafted Arabic calligraphy — bespoke frames, gift items, and wedding invitations created with purpose, precision, and devotion.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn btn-gold"><i class="fas fa-pen-nib"></i> Explore Services</a>
+        <a href="#gallery" class="btn btn-outline-cream"><i class="fas fa-images"></i> View Gallery</a>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up">
+      <div class="hero-ring">
+        <img
+          src="https://images.unsplash.com/photo-1585036156171-384164a8c675?auto=format&fit=crop&w=600&q=80"
+          alt="Beautiful Arabic Calligraphy — Quran and Islamic Art"
+          loading="eager"
+          onerror="this.style.display='none'; this.parentNode.style.background='var(--g-medium)';"
+        />
+      </div>
+      <div class="hero-badge">
+        <span class="arabic">بِسْمِ اللَّه</span>
+        <span class="transl">In the Name of Allah</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ══════ MARQUEE ═══════════════════════════════════════════════ -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track" id="mTrack">
+    <span class="marquee-item">Bespoke Calligraphy Frames</span>
+    <span class="marquee-item">Arabic Calligraphy Designs</span>
+    <span class="marquee-item">Customised Gift Items</span>
+    <span class="marquee-item">Wedding Invitations</span>
+    <span class="marquee-item">Islamic Wall Art</span>
+    <span class="marquee-item">Personalised Prints</span>
+    <span class="marquee-item">Faith-Inspired Gifts</span>
+    <span class="marquee-item">Bespoke Calligraphy Frames</span>
+    <span class="marquee-item">Arabic Calligraphy Designs</span>
+    <span class="marquee-item">Customised Gift Items</span>
+    <span class="marquee-item">Wedding Invitations</span>
+    <span class="marquee-item">Islamic Wall Art</span>
+    <span class="marquee-item">Personalised Prints</span>
+    <span class="marquee-item">Faith-Inspired Gifts</span>
+  </div>
+</div>
+
+<!-- ══════ ABOUT ═════════════════════════════════════════════════ -->
+<section class="about section" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-images fade-up" aria-hidden="true">
+        <div class="about-corner"></div>
+        <div class="about-corner-br"></div>
+        <img class="about-img-main"
+          src="cally5.jpg"
+          alt="Arabic Calligraphy Frame Artwork"
+          loading="lazy"
+          onerror="this.style.background='var(--g-medium)'; this.src='';"
+        />
+        <img class="about-img-sec"
+          src="cally 6.jpg"
+          alt="Islamic Calligraphy Gift Set"
+          loading="lazy"
+          onerror="this.style.background='var(--g-primary)'; this.src='';"
+        />
+      </div>
+
+      <div class="about-text fade-up">
+        <div class="eyebrow left">Our Story</div>
+        <h2 class="section-title" style="text-align:left;">
+          Crafting Faith Into<br><em>Timeless Art</em>
+        </h2>
+        <p>At Lade's Calligraphy, we believe every word carries divine energy — especially when written with intention, skill, and love. Born from a deep reverence for Islamic art and the beauty of Arabic script, we create pieces that don't merely decorate spaces, they elevate them.</p>
+        <p>Every stroke is deliberate. Every piece is a conversation between faith and artistry. Based in Egbeda, Lagos, we craft bespoke Arabic calligraphy for homes, offices, weddings, and meaningful gifting — across Nigeria and beyond.</p>
+        <p style="color:var(--gold); font-style:italic; font-family:'Cormorant Garamond',serif; font-size:1.1rem;">
+          "Every piece is crafted with purpose, inspired by faith and made with love."
+        </p>
+        <div class="about-stats">
+          <div class="stat fade-up"><h3>500+</h3><p>Pieces Crafted</p></div>
+          <div class="stat fade-up"><h3>100%</h3><p>Handmade</p></div>
+          <div class="stat fade-up"><h3>5★</h3><p>Client Rating</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ SERVICES ══════════════════════════════════════════════ -->
+<section class="services section" id="services">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow">What We Offer</div>
+      <h2 class="section-title">Our <em style="font-style:italic;color:var(--g-medium);">Services</em></h2>
+      <p class="section-sub">Every piece tailored exclusively for you — from personalised frames to wedding keepsakes.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><i class="fas fa-border-all"></i></div>
+        <h3>Bespoke Calligraphy Frames</h3>
+        <p>Custom-designed Arabic calligraphy mounted in premium frames — perfect for home décor, offices, and gifts. Choose your verse, size, and colour palette. Each frame is a unique piece of art.</p>
+        <div class="svc-footer">
+          <span class="svc-price">Custom Pricing</span>
+          <button class="svc-btn" onclick="openWA('Bespoke Calligraphy Frame')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><i class="fas fa-pen-nib"></i></div>
+        <h3>Arabic Calligraphy Designs</h3>
+        <p>Digital and handcrafted Arabic calligraphy designs for print, branding, personal use, or framing. Beautiful Islamic scripts rendered with precision — Thuluth, Naskh, Diwani, and more.</p>
+        <div class="svc-footer">
+          <span class="svc-price">Custom Pricing</span>
+          <button class="svc-btn" onclick="openWA('Arabic Calligraphy Design')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><i class="fas fa-gift"></i></div>
+        <h3>Arabic Customised Gift Items</h3>
+        <p>Surprise loved ones with personalised Islamic gift sets — engraved key holders, mugs, bookmarks, and more. All feature stunning calligraphy artwork, elegantly packaged for gifting.</p>
+        <div class="svc-footer">
+          <span class="svc-price">Custom Pricing</span>
+          <button class="svc-btn" onclick="openWA('Customised Gift Item')">Order Now</button>
+        </div>
+      </div>
+
+      <div class="service-card fade-up">
+        <div class="svc-icon"><i class="fas fa-heart"></i></div>
+        <h3>Wedding Invitations</h3>
+        <p>Make your Nikah unforgettable with bespoke calligraphy-adorned invitations. Elegantly written Arabic script with contemporary design — the perfect prelude to your blessed union.</p>
+        <div class="svc-footer">
+          <span class="svc-price">Custom Pricing</span>
+          <button class="svc-btn" onclick="openWA('Wedding Invitation')">Order Now</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ GALLERY ═══════════════════════════════════════════════ -->
+<section class="gallery section" id="gallery">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow" style="color:var(--gold);">Portfolio</div>
+      <h2 class="section-title">Words Made <em>Beautiful</em></h2>
+      <p class="section-sub">A glimpse into the world of Arabic calligraphy — each piece a unique expression of faith and craft.</p>
+    </div>
+    <div class="gallery-grid">
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Art" data-sub="Bespoke Calligraphy">
+        <img src="cally%205.jpg"
+             alt="Arabic Calligraphy Art" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Art</h4><p>Bespoke Calligraphy</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Design" data-sub="Arabic Calligraphy Design">
+        <img src="cally%206.jpg"
+             alt="Arabic Calligraphy Design" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Design</h4><p>Arabic Calligraphy Design</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Frame" data-sub="Bespoke Frame">
+        <img src="cally%207.jpg"
+             alt="Bespoke Calligraphy Frame" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Frame</h4><p>Bespoke Frame</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Wall Art" data-sub="Calligraphy Wall Art">
+        <img src="cally3.jpg"
+             alt="Calligraphy Wall Art" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Wall Art</h4><p>Calligraphy Wall Art</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Islamic Design" data-sub="Arabic Calligraphy">
+        <img src="cally4.jpg"
+             alt="Islamic Calligraphy Design" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Islamic Design</h4><p>Arabic Calligraphy</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Quranic Verse" data-sub="Calligraphy Print">
+        <img src="cally5.jpg"
+             alt="Quranic Verse Calligraphy" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Quranic Verse</h4><p>Calligraphy Print</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Frame Design" data-sub="Premium Calligraphy Frame">
+        <img src="cally7.jpg"
+             alt="Premium Calligraphy Frame" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Frame Design</h4><p>Premium Calligraphy Frame</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Arabic Script Art" data-sub="Handcrafted Calligraphy">
+        <img src="cally8.jpg"
+             alt="Arabic Script Art" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Arabic Script Art</h4><p>Handcrafted Calligraphy</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Handcrafted Piece" data-sub="Custom Calligraphy">
+        <img src="cally9.jpg"
+             alt="Handcrafted Calligraphy" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Handcrafted Piece</h4><p>Custom Calligraphy</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Wedding Invitation" data-sub="Arabic Script Invitation">
+        <img src="invita.jpg"
+             alt="Wedding Invitation" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Wedding Invitation</h4><p>Arabic Script Invitation</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Bespoke Invitation" data-sub="Calligraphy Wedding Card">
+        <img src="invita2.jpg"
+             alt="Bespoke Wedding Invitation" loading="lazy"
+             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+        <div class="gal-overlay"><div class="gal-meta"><h4>Bespoke Invitation</h4><p>Calligraphy Wedding Card</p></div></div>
+        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="https://wa.me/2349023223267?text=As-salamu%20alaykum!%20I%20would%20like%20to%20see%20more%20of%20your%20work." class="btn btn-gold" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Request Full Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ HOW TO ORDER ══════════════════════════════════════════ -->
+<section class="process section" id="process">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow">Simple Process</div>
+      <h2 class="section-title">How to Place Your <em style="font-style:italic;color:var(--g-medium);">Order</em></h2>
+      <p class="section-sub">From idea to your doorstep in four easy steps — we make it effortless.</p>
+    </div>
+    <div class="process-steps">
+      <div class="proc-step fade-up">
+        <div class="proc-num">1</div>
+        <h3>Choose a Service</h3>
+        <p>Browse our offerings and select the calligraphy product that speaks to you — frame, design, gift, or invite.</p>
+      </div>
+      <div class="proc-step fade-up">
+        <div class="proc-num">2</div>
+        <h3>Share Your Vision</h3>
+        <p>Message us on WhatsApp with your preferences — the verse, size, colour palette, and occasion details.</p>
+      </div>
+      <div class="proc-step fade-up">
+        <div class="proc-num">3</div>
+        <h3>We Create & Preview</h3>
+        <p>Our artist handcrafts your piece. We send a preview for your approval before the final product is completed.</p>
+      </div>
+      <div class="proc-step fade-up">
+        <div class="proc-num">4</div>
+        <h3>Delivered With Love</h3>
+        <p>Beautifully packaged and delivered to your door — within Lagos and across Nigeria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ TESTIMONIALS ══════════════════════════════════════════ -->
+<section class="testimonials section" id="testimonials">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow" style="color:var(--gold);">Client Love</div>
+      <h2 class="section-title">What Our Clients <em>Say</em></h2>
+      <p class="section-sub">Every piece we create carries a story — here are a few from the hearts of our happy clients.</p>
+    </div>
+    <div class="testi-grid">
+
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"I ordered a Bismillah frame as a housewarming gift and the recipient was moved to tears. The craftsmanship is extraordinary — the gold lettering on deep green is absolutely breathtaking."</p>
+        <div class="testi-author">
+          <div class="testi-av">F</div>
+          <div class="testi-info"><h5>Fatimah A.</h5><span>Lagos · Bespoke Frame</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"Lade's Calligraphy created the most stunning Nikah invitations for our wedding. Guests couldn't stop complimenting them. The Arabic script was elegant and delivery was on schedule."</p>
+        <div class="testi-author">
+          <div class="testi-av">K</div>
+          <div class="testi-info"><h5>Khadijah & Usman</h5><span>Abuja · Wedding Invitations</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The personalised gift set for my mum's birthday was absolutely beautiful. She placed it as the centrepiece of her sitting room. I'll definitely be ordering again — best gift ever!"</p>
+        <div class="testi-author">
+          <div class="testi-av">A</div>
+          <div class="testi-info"><h5>Aisha M.</h5><span>Lagos · Gift Set</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FAQ ════════════════════════════════════════════════════ -->
+<section class="faq section" id="faq">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow">Questions?</div>
+      <h2 class="section-title">Frequently Asked <em style="font-style:italic;color:var(--g-medium);">Questions</em></h2>
+    </div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you ship outside Lagos?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>Yes! We deliver across Nigeria — Abuja, Port Harcourt, Ibadan, Kano, and beyond. International shipping is available on request. Delivery timelines and charges vary by location; contact us for a quote.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does it take to complete an order?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>Standard orders are completed within 5–10 business days depending on complexity. Rush orders are available for an additional fee. Wedding invitations and bulk orders typically require 2 weeks lead time.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I choose which Quranic verse or text to use?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>Absolutely — all our pieces are fully bespoke. Choose any Quranic verse, dua, name, or meaningful phrase in Arabic. We'll verify accuracy and work with you to ensure the calligraphy is both correct and beautiful.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What payment methods do you accept?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>We accept bank transfers, mobile payments (Opay, PalmPay, Moniepoint), and cash on delivery within Lagos. A 50% deposit is required before work begins, with the balance paid on delivery.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you offer bulk orders for events?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>Yes — we offer special pricing for bulk orders such as wedding souvenirs, Ramadan gifts, aqiqah favours, and corporate gift sets. Contact us with your requirements for a custom quote.</p></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I see a preview before you finalise my order?
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-a"><p>Always! We send a digital preview via WhatsApp before finalising any piece. Your complete satisfaction and approval is our priority — we don't proceed without your sign-off.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ CONTACT ════════════════════════════════════════════════ -->
+<section class="contact section" id="contact">
+  <div class="section-inner">
+    <div class="section-header fade-up">
+      <div class="eyebrow" style="color:var(--gold);">Get In Touch</div>
+      <h2 class="section-title">Let's Create Something <em>Beautiful</em></h2>
+    </div>
+    <div class="contact-grid">
+
+      <div class="contact-info fade-up">
+        <h3>Start Your Order Today</h3>
+        <p>Ready to bring your vision to life? Reach us via WhatsApp for the fastest response, or fill the form and we'll be in touch within 24 hours.</p>
+        <div class="contact-items">
+          <div class="ci">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><strong>Location</strong><span>Egbeda, Lagos, Nigeria</span></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
+            <div><strong>Phone / WhatsApp</strong><a href="tel:09023223267">09023223267</a></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><i class="fab fa-instagram"></i></div>
+            <div><strong>Instagram</strong><a href="https://instagram.com/ladescaligraphy" target="_blank" rel="noopener">@lade's caligraphy</a></div>
+          </div>
+          <div class="ci">
+            <div class="ci-icon"><i class="fas fa-clock"></i></div>
+            <div><strong>Hours</strong><span>Mon–Sat, 8am – 8pm</span></div>
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="https://wa.me/2349023223267?text=As-salamu%20alaykum!%20I%20would%20like%20to%20place%20an%20order%20at%20Lade%27s%20Calligraphy." class="btn btn-wa" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="form-box fade-up">
+        <h3>Send an Enquiry</h3>
+        <div class="fg">
+          <label for="fName">Your Name</label>
+          <input type="text" id="fName" placeholder="e.g. Aisha Bello" autocomplete="name" />
+        </div>
+        <div class="fg">
+          <label for="fPhone">Phone / WhatsApp</label>
+          <input type="tel" id="fPhone" placeholder="e.g. 08012345678" autocomplete="tel" />
+        </div>
+        <div class="fg">
+          <label for="fService">Service Interested In</label>
+          <select id="fService">
+            <option value="">Select a service…</option>
+            <option>Bespoke Arabic Calligraphy Frame</option>
+            <option>Arabic Calligraphy Design</option>
+            <option>Arabic Customised Gift Item</option>
+            <option>Wedding Invitation</option>
+            <option>Bulk / Corporate Order</option>
+            <option>Other / Custom Request</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label for="fMsg">Your Message</label>
+          <textarea id="fMsg" placeholder="Tell us your idea — the verse, size, occasion, colours…"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitForm()">
+          <i class="fab fa-whatsapp"></i> Send via WhatsApp
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ═════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Lade's <span>Calligraphy</span></h3>
+      <p>Beautiful Arabic calligraphy crafted with faith, purpose, and love — for homes, weddings, and hearts across Nigeria and beyond.</p>
+      <div class="socials">
+        <a href="https://wa.me/2349023223267" class="soc-link" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://instagram.com/ladescaligraphy" class="soc-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="tel:09023223267" class="soc-link" aria-label="Call us"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Calligraphy Frames</a></li>
+        <li><a href="#services">Arabic Designs</a></li>
+        <li><a href="#services">Gift Items</a></li>
+        <li><a href="#services">Wedding Invitations</a></li>
+        <li><a href="#services">Bulk Orders</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#process">How to Order</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span>Lade's Calligraphy</span> · Egbeda, Lagos, Nigeria · All rights reserved
+      <br style="display:none;" />
+      &nbsp;·&nbsp;<span>Custom Made · Faith Inspired · Made With Love ♥</span>
+    </p>
+  </div>
+</footer>
+
+<!-- ══════ WHATSAPP CHAT WIDGET ══════════════════════════════════ -->
+<div class="wa-float" role="complementary" aria-label="WhatsApp Chat">
+  <div class="wa-chat" id="waChat" role="dialog" aria-label="Chat with us on WhatsApp">
+    <div class="chat-head">
+      <div class="chat-av" aria-hidden="true">L</div>
+      <div class="chat-head-info">
+        <h4>Lade's Calligraphy</h4>
+        <span>Typically replies instantly</span>
+      </div>
+      <button class="chat-x" onclick="toggleChat()" aria-label="Close chat"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chat-body">
+      <div class="chat-bubble">
+        👋 <strong>As-salamu alaykum!</strong> Welcome to Lade's Calligraphy.<br><br>
+        Beautiful Arabic calligraphy, crafted with faith and love. How can I help you today?
+        <div class="ct">Just now</div>
+      </div>
+    </div>
+    <div class="chat-foot">
+      <p>What are you interested in?</p>
+      <div class="chat-opts">
+        <button class="chat-opt" onclick="openWA('Bespoke Calligraphy Frame')">🖼️ Bespoke Calligraphy Frame</button>
+        <button class="chat-opt" onclick="openWA('Arabic Calligraphy Design')">✍️ Arabic Calligraphy Design</button>
+        <button class="chat-opt" onclick="openWA('Customised Gift Item')">🎁 Customised Gift Item</button>
+        <button class="chat-opt" onclick="openWA('Wedding Invitation')">💍 Wedding Invitation</button>
+        <button class="chat-opt" onclick="openWA('General Enquiry')">💬 General Enquiry</button>
+      </div>
+    </div>
+  </div>
+  <button class="wa-btn" onclick="toggleChat()" aria-label="Open WhatsApp chat">
+    <div class="wa-pulse" aria-hidden="true"></div>
+    <span class="wa-notif" aria-hidden="true">1</span>
+    <i class="fab fa-whatsapp"></i>
+  </button>
+</div>
+
+<!-- ══════ LIGHTBOX ══════════════════════════════════════════════ -->
+<div class="lightbox" id="lbox" role="dialog" aria-modal="true" aria-label="Image preview" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLB()" aria-label="Close preview"><i class="fas fa-times"></i></button>
+  <img class="lb-img" id="lbImg" src="" alt="Calligraphy preview" />
+</div>
+
+<!-- ══════ SCROLL TO TOP ═════════════════════════════════════════ -->
+<button class="scr-top" id="scrTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<!--  JAVASCRIPT                                                   -->
+<!-- ══════════════════════════════════════════════════════════════ -->
+<script>
+/* ── Navbar & scroll top ─────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+const scrTop  = document.getElementById('scrTop');
+
+window.addEventListener('scroll', () => {
+  const s = window.scrollY > 80;
+  navbar.classList.toggle('scrolled', s);
+  scrTop.classList.toggle('vis', window.scrollY > 400);
+}, { passive: true });
+
+/* ── Mobile menu ─────────────────────────────────────────────── */
+function toggleMob() {
+  document.getElementById('mobMenu').classList.toggle('open');
+}
+
+/* ── Intersection Observer (fade-up) ─────────────────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, idx) => {
+    if (e.isIntersecting) {
+      // stagger siblings in the same parent container
+      const siblings = [...e.target.parentElement.querySelectorAll('.fade-up:not(.vis)')];
+      const delay = siblings.indexOf(e.target) * 90;
+      setTimeout(() => e.target.classList.add('vis'), delay);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// Hero elements appear on load
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.hero .fade-up').forEach((el, i) => {
+    setTimeout(() => el.classList.add('vis'), 200 + i * 150);
+  });
+});
+
+/* ── FAQ accordion ───────────────────────────────────────────── */
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const open = item.classList.contains('active');
+  document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
+  if (!open) item.classList.add('active');
+}
+
+/* ── WhatsApp chat widget ────────────────────────────────────── */
+let chatVisible = false;
+
+function toggleChat() {
+  chatVisible = !chatVisible;
+  const el = document.getElementById('waChat');
+  el.classList.toggle('open', chatVisible);
+  // hide notification badge once opened
+  const notif = document.querySelector('.wa-notif');
+  if (chatVisible && notif) notif.style.display = 'none';
+}
+
+const WA_PHONE = '2349023223267';
+const WA_MSGS = {
+  'Bespoke Calligraphy Frame':   "As-salamu alaykum! I'd love to order a Bespoke Arabic Calligraphy Frame. Could you share options and pricing?",
+  'Arabic Calligraphy Design':   "As-salamu alaykum! I'm interested in an Arabic Calligraphy Design. What are my options?",
+  'Customised Gift Item':        "As-salamu alaykum! I'd like to order a Customised Arabic Gift Item — can you help?",
+  'Wedding Invitation':          "As-salamu alaykum! I need Arabic Calligraphy Wedding Invitations. Can we discuss the details?",
+  'General Enquiry':             "As-salamu alaykum! I'd like to learn more about Lade's Calligraphy services."
+};
+
+function openWA(service) {
+  const msg = WA_MSGS[service] || WA_MSGS['General Enquiry'];
+  window.open('https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+}
+
+/* ── Contact form → WhatsApp ─────────────────────────────────── */
+function submitForm() {
+  const name    = document.getElementById('fName').value.trim();
+  const phone   = document.getElementById('fPhone').value.trim();
+  const service = document.getElementById('fService').value;
+  const msg     = document.getElementById('fMsg').value.trim();
+
+  if (!name)    { showAlert('Please enter your name.', 'fName');    return; }
+  if (!service) { showAlert('Please select a service.', 'fService'); return; }
+
+  const text = [
+    'As-salamu alaykum! My name is ' + name + '.',
+    '',
+    'Service: ' + service,
+    phone ? 'My WhatsApp number: ' + phone : '',
+    msg   ? '\nMessage: ' + msg : ''
+  ].filter(Boolean).join('\n');
+
+  window.open('https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+}
+
+function showAlert(message, fieldId) {
+  const field = document.getElementById(fieldId);
+  field.style.borderColor = '#e74c3c';
+  field.focus();
+  setTimeout(() => field.style.borderColor = '', 2500);
+  // brief inline message
+  const existing = field.parentElement.querySelector('.field-err');
+  if (existing) existing.remove();
+  const err = document.createElement('span');
+  err.className = 'field-err';
+  err.style.cssText = 'color:#e74c3c;font-size:.76rem;margin-top:.25rem;display:block;';
+  err.textContent = message;
+  field.parentElement.appendChild(err);
+  setTimeout(() => err.remove(), 3000);
+}
+
+/* ── Gallery lightbox ────────────────────────────────────────── */
+function openLB(item) {
+  const img   = item.querySelector('img');
+  const lbox  = document.getElementById('lbox');
+  const lbImg = document.getElementById('lbImg');
+  lbImg.src   = img.src.replace(/w=\d+/, 'w=1200');
+  lbImg.alt   = img.alt;
+  lbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLB(e) {
+  if (!e || e.target === document.getElementById('lbox') || e.target.closest('.lb-close')) {
+    document.getElementById('lbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// Keyboard: Escape closes lightbox / mobile menu
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLB();
+    document.getElementById('mobMenu').classList.remove('open');
+    if (chatVisible) toggleChat();
+  }
+});
+</script>
+</body>
+</html>
