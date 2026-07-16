@@ -310,6 +310,7 @@
     .gal-video-wrap {
       position:relative; overflow:hidden; border-radius:var(--radius-sm);
       background:var(--g-primary); aspect-ratio:16/9;
+      border:2px solid var(--gold); cursor:pointer;
     }
     .gal-video {
       width:100%; height:100%; object-fit:cover; display:block;
@@ -383,9 +384,10 @@
       width:34px; height:34px; border-radius:50%;
       background:rgba(196,150,59,.9); color:white; font-size:.75rem;
       display:flex; align-items:center; justify-content:center;
-      opacity:0; transition:opacity .3s;
+      opacity:0; transition:opacity .3s; z-index:4;
     }
     .gal-item:hover .gal-zoom { opacity:1; }
+    .gal-video-wrap:hover .gal-zoom, .gal-video-wrap .gal-zoom { opacity:1; }
 
     /* ─── PROCESS ────────────────────────────────────────────── */
     .process { background:var(--cream-dk); }
@@ -589,7 +591,10 @@
       z-index:1100; display:none; align-items:center; justify-content:center;
     }
     .lightbox.open { display:flex; }
-    .lb-img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; }
+    .lb-img { max-width:92vw; max-height:88vh; object-fit:contain; border-radius:4px; display:none; }
+    .lb-img.active { display:block; }
+    .lb-video { max-width:92vw; max-height:88vh; border-radius:4px; display:none; outline:2px solid var(--gold); outline-offset:4px; }
+    .lb-video.active { display:block; }
     .lb-close {
       position:absolute; top:1.25rem; right:1.5rem;
       color:white; font-size:1.9rem; background:none; border:none; line-height:1;
@@ -922,16 +927,18 @@
 
     <!-- Videos row -->
     <div class="gallery-videos fade-up">
-      <div class="gal-video-wrap">
+      <button class="gal-video-wrap" type="button" onclick="openVLB('D2.mp4',this)" aria-label="Play Calligraphy Process Video 1">
         <div class="gal-tri-border"></div>
-        <video class="gal-video" src="D2.mp4" muted loop playsinline preload="metadata" aria-label="Calligraphy Process Video 1"></video>
+        <video class="gal-video" src="D2.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Process</h4><p>Watch the Craft</p></div></div>
-      </div>
-      <div class="gal-video-wrap">
+        <div class="gal-zoom"><i class="fas fa-play"></i></div>
+      </button>
+      <button class="gal-video-wrap" type="button" onclick="openVLB('D4.mp4',this)" aria-label="Play Artistry in Motion Video 2">
         <div class="gal-tri-border"></div>
-        <video class="gal-video" src="D4.mp4" muted loop playsinline preload="metadata" aria-label="Calligraphy Process Video 2"></video>
+        <video class="gal-video" src="D4.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
         <div class="gal-overlay"><div class="gal-meta"><h4>Artistry in Motion</h4><p>Behind the Scenes</p></div></div>
-      </div>
+        <div class="gal-zoom"><i class="fas fa-play"></i></div>
+      </button>
     </div>
 
     <!-- Images row 1: 3 per row -->
@@ -1282,9 +1289,10 @@
 </div>
 
 <!-- ══════ LIGHTBOX ══════════════════════════════════════════════ -->
-<div class="lightbox" id="lbox" role="dialog" aria-modal="true" aria-label="Image preview" onclick="closeLB(event)">
+<div class="lightbox" id="lbox" role="dialog" aria-modal="true" aria-label="Media preview" onclick="closeLB(event)">
   <button class="lb-close" onclick="closeLB()" aria-label="Close preview"><i class="fas fa-times"></i></button>
   <img class="lb-img" id="lbImg" src="" alt="Calligraphy preview" />
+  <video class="lb-video" id="lbVid" src="" controls playsinline preload="auto"></video>
 </div>
 
 <!-- ══════ SCROLL TO TOP ═════════════════════════════════════════ -->
@@ -1474,8 +1482,11 @@ function openLB(item) {
   if (!img || !img.src || item.dataset.broken === 'true') return;
   var lbox  = document.getElementById('lbox');
   var lbImg = document.getElementById('lbImg');
+  var lbVid = document.getElementById('lbVid');
+  lbVid.pause(); lbVid.removeAttribute('src'); lbVid.classList.remove('active');
   lbImg.src = img.src.replace(/w=\d+/, 'w=1200');
   lbImg.alt = img.alt;
+  lbImg.classList.add('active');
   lbox.classList.add('open');
   document.body.style.overflow = 'hidden';
   lbReturnFocus = item;
@@ -1483,9 +1494,32 @@ function openLB(item) {
   if (closeBtn) closeBtn.focus();
 }
 
+function openVLB(src, item) {
+  var lbox  = document.getElementById('lbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbVid = document.getElementById('lbVid');
+  lbImg.classList.remove('active');
+  lbImg.src = '';
+  lbVid.src = src;
+  lbVid.classList.add('active');
+  lbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbVid.play();
+  lbReturnFocus = item;
+  var closeBtn = lbox.querySelector('.lb-close');
+  if (closeBtn) closeBtn.focus();
+}
+
 function closeLB(e) {
   if (!e || e.target === document.getElementById('lbox') || e.target.closest('.lb-close') || (e.key && e.key === 'Escape')) {
-    document.getElementById('lbox').classList.remove('open');
+    var lbox  = document.getElementById('lbox');
+    var lbVid = document.getElementById('lbVid');
+    var lbImg = document.getElementById('lbImg');
+    lbVid.pause(); lbVid.removeAttribute('src');
+    lbVid.classList.remove('active');
+    lbImg.classList.remove('active');
+    lbImg.src = '';
+    lbox.classList.remove('open');
     document.body.style.overflow = '';
     if (lbReturnFocus) { lbReturnFocus.focus(); lbReturnFocus = null; }
   }
