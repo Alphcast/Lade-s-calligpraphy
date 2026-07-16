@@ -636,21 +636,25 @@
       .wa-chat { width:calc(100vw - 1rem); right:0; }
     }
     @media (prefers-reduced-motion:reduce) {
-      *, *::before, *::after { animation-duration:.001ms !important; transition-duration:.001ms !important; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      html { scroll-behavior: auto !important; }
     }
   </style>
 </head>
 <body>
 
 <!-- ══════ MOBILE MENU ══════════════════════════════════════════ -->
-<div class="mobile-menu" id="mobMenu">
-  <button class="mob-close" onclick="toggleMob()" aria-label="Close menu"><i class="fas fa-times"></i></button>
-  <a href="#about"        onclick="toggleMob()">About</a>
-  <a href="#services"     onclick="toggleMob()">Services</a>
-  <a href="#gallery"      onclick="toggleMob()">Gallery</a>
-  <a href="#testimonials" onclick="toggleMob()">Reviews</a>
-  <a href="#faq"          onclick="toggleMob()">FAQ</a>
-  <a href="#contact"      onclick="toggleMob()" style="color:var(--gold)">Order Now</a>
+<div class="mobile-menu" id="mobMenu" aria-hidden="true">
+  <button class="mob-close" id="mobClose" type="button" onclick="toggleMob()" aria-label="Close menu" tabindex="-1"><i class="fas fa-times"></i></button>
+  <a href="#about"        tabindex="-1" onclick="toggleMob()">About</a>
+  <a href="#services"     tabindex="-1" onclick="toggleMob()">Services</a>
+  <a href="#gallery"      tabindex="-1" onclick="toggleMob()">Gallery</a>
+  <a href="#testimonials" tabindex="-1" onclick="toggleMob()">Reviews</a>
+  <a href="#faq"          tabindex="-1" onclick="toggleMob()">FAQ</a>
+  <a href="#contact"      tabindex="-1" onclick="toggleMob()" style="color:var(--gold)">Order Now</a>
 </div>
 
 <!-- ══════ NAVBAR ═══════════════════════════════════════════════ -->
@@ -664,7 +668,7 @@
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Order Now</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMob()" aria-label="Open menu">
+  <button class="hamburger" id="mobToggle" type="button" onclick="toggleMob()" aria-label="Open menu" aria-controls="mobMenu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -844,93 +848,93 @@
     </div>
     <div class="gallery-grid">
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Art" data-sub="Bespoke Calligraphy">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Art" data-sub="Bespoke Calligraphy" aria-label="Preview Calligraphy Art">
         <img src="cally%205.jpg"
              alt="Arabic Calligraphy Art" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Art</h4><p>Bespoke Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Design" data-sub="Arabic Calligraphy Design">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Design" data-sub="Arabic Calligraphy Design" aria-label="Preview Calligraphy Design">
         <img src="cally%206.jpg"
              alt="Arabic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Design</h4><p>Arabic Calligraphy Design</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Calligraphy Frame" data-sub="Bespoke Frame">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Frame" data-sub="Bespoke Frame" aria-label="Preview Calligraphy Frame">
         <img src="cally%207.jpg"
              alt="Bespoke Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Frame</h4><p>Bespoke Frame</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Wall Art" data-sub="Calligraphy Wall Art">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wall Art" data-sub="Calligraphy Wall Art" aria-label="Preview Wall Art">
         <img src="cally3.jpg"
              alt="Calligraphy Wall Art" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Wall Art</h4><p>Calligraphy Wall Art</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Islamic Design" data-sub="Arabic Calligraphy">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Islamic Design" data-sub="Arabic Calligraphy" aria-label="Preview Islamic Design">
         <img src="cally4.jpg"
              alt="Islamic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Islamic Design</h4><p>Arabic Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Quranic Verse" data-sub="Calligraphy Print">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Quranic Verse" data-sub="Calligraphy Print" aria-label="Preview Quranic Verse">
         <img src="cally5.jpg"
              alt="Quranic Verse Calligraphy" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Quranic Verse</h4><p>Calligraphy Print</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Frame Design" data-sub="Premium Calligraphy Frame">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Frame Design" data-sub="Premium Calligraphy Frame" aria-label="Preview Frame Design">
         <img src="cally7.jpg"
              alt="Premium Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Frame Design</h4><p>Premium Calligraphy Frame</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Arabic Script Art" data-sub="Handcrafted Calligraphy">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Arabic Script Art" data-sub="Handcrafted Calligraphy" aria-label="Preview Arabic Script Art">
         <img src="cally8.jpg"
              alt="Arabic Script Art" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Arabic Script Art</h4><p>Handcrafted Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Handcrafted Piece" data-sub="Custom Calligraphy">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Handcrafted Piece" data-sub="Custom Calligraphy" aria-label="Preview Handcrafted Piece">
         <img src="cally9.jpg"
              alt="Handcrafted Calligraphy" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Handcrafted Piece</h4><p>Custom Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Wedding Invitation" data-sub="Arabic Script Invitation">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wedding Invitation" data-sub="Arabic Script Invitation" aria-label="Preview Wedding Invitation">
         <img src="invita.jpg"
              alt="Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-primary)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Wedding Invitation</h4><p>Arabic Script Invitation</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
+      </button>
 
-      <div class="gal-item fade-up" onclick="openLB(this)" data-title="Bespoke Invitation" data-sub="Calligraphy Wedding Card">
+      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Bespoke Invitation" data-sub="Calligraphy Wedding Card" aria-label="Preview Bespoke Invitation">
         <img src="invita2.jpg"
              alt="Bespoke Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.style.background='var(--g-medium)'; this.remove();" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Bespoke Invitation</h4><p>Calligraphy Wedding Card</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
+      </button>
 
     </div>
     <div style="text-align:center; margin-top:2.5rem;">
@@ -1192,7 +1196,7 @@
 
 <!-- ══════ WHATSAPP CHAT WIDGET ══════════════════════════════════ -->
 <div class="wa-float" role="complementary" aria-label="WhatsApp Chat">
-  <div class="wa-chat" id="waChat" role="dialog" aria-label="Chat with us on WhatsApp">
+  <div class="wa-chat" id="waChat" role="dialog" aria-label="Chat with us on WhatsApp" aria-hidden="true">
     <div class="chat-head">
       <div class="chat-av" aria-hidden="true">L</div>
       <div class="chat-head-info">
@@ -1219,7 +1223,7 @@
       </div>
     </div>
   </div>
-  <button class="wa-btn" onclick="toggleChat()" aria-label="Open WhatsApp chat">
+  <button class="wa-btn" id="waToggle" type="button" onclick="toggleChat()" aria-label="Open WhatsApp chat" aria-controls="waChat" aria-expanded="false">
     <div class="wa-pulse" aria-hidden="true"></div>
     <span class="wa-notif" aria-hidden="true">1</span>
     <i class="fab fa-whatsapp"></i>
@@ -1233,7 +1237,7 @@
 </div>
 
 <!-- ══════ SCROLL TO TOP ═════════════════════════════════════════ -->
-<button class="scr-top" id="scrTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+<button class="scr-top" id="scrTop" type="button" onclick="scrollToTop()" aria-label="Scroll to top">
   <i class="fas fa-arrow-up"></i>
 </button>
 
