@@ -301,6 +301,57 @@
     .gallery .section-title { color:var(--cream); }
     .gallery .section-title em { color:var(--gold); font-style:italic; }
     .gallery .section-sub { color:rgba(247,242,231,.62); }
+
+    /* Video row */
+    .gallery-videos {
+      display:grid; grid-template-columns:1fr 1fr; gap:.6rem;
+      margin-bottom:.6rem;
+    }
+    .gal-video-wrap {
+      position:relative; overflow:hidden; border-radius:var(--radius-sm);
+      background:var(--g-primary); aspect-ratio:16/9;
+    }
+    .gal-video {
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .55s ease;
+    }
+    .gal-video-wrap:hover .gal-video { transform:scale(1.05); }
+    .gal-video-wrap:hover .gal-overlay { opacity:1; }
+    .gal-video-wrap .gal-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(9,26,16,.92) 0%, transparent 55%);
+      opacity:0; transition:opacity .35s; display:flex; align-items:flex-end; padding:1.2rem;
+    }
+
+    /* Animated triangle border on videos */
+    .gal-tri-border {
+      position:absolute; inset:0; z-index:3; pointer-events:none;
+      border:2px solid transparent;
+      border-image:linear-gradient(var(--tri-angle,0deg), transparent 30%, var(--gold) 50%, transparent 70%) 1;
+      animation:triSpin 4s linear infinite;
+      opacity:.6;
+    }
+    @property --tri-angle {
+      syntax:'<angle>';
+      initial-value:0deg;
+      inherits:false;
+    }
+    @keyframes triSpin {
+      to { --tri-angle:360deg; }
+    }
+    /* Fallback for browsers without @property */
+    @supports not (background:paint(something)) {
+      .gal-tri-border {
+        border:2px solid var(--gold);
+        opacity:.35;
+        animation:triPulse 2.5s ease-in-out infinite;
+      }
+      @keyframes triPulse {
+        0%,100% { opacity:.2; border-color:var(--gold); }
+        50% { opacity:.7; border-color:var(--gold-lt); }
+      }
+    }
+
     .gallery-grid {
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -314,7 +365,6 @@
       font:inherit; color:inherit; width:100%; height:100%;
     }
     .gal-item:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
-    .gal-item:nth-child(1) { grid-column:span 2; }
     .gal-item img {
       width:100%; height:100%; object-fit:cover; display:block;
       transition:transform .55s ease; will-change:transform;
@@ -582,9 +632,9 @@
       .hero-badge { width:90px; height:90px; }
       .hero-badge .arabic { font-size:.9rem; }
       .services-grid { grid-template-columns:1fr 1fr; gap:1.1rem; }
+      .gallery-videos { gap:.5rem; }
       .service-card { padding:1.6rem 1.4rem; }
       .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; gap:.5rem; }
-      .gal-item:nth-child(1) { grid-column:span 2; }
       .process-steps { grid-template-columns:1fr 1fr; gap:1.5rem; }
       .process-steps::before { display:none; }
       .testi-grid { grid-template-columns:1fr 1fr; gap:1.1rem; }
@@ -617,9 +667,9 @@
       .hero-ring { width:180px; height:180px; }
       .hero-badge { width:76px; height:76px; bottom:-8px; right:5px; }
       .hero-badge .arabic { font-size:.8rem; }
+      .gallery-videos { grid-template-columns:1fr; }
       .services-grid { grid-template-columns:1fr; gap:1.1rem; }
       .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:160px; gap:.5rem; }
-      .gal-item:nth-child(1) { grid-column:span 2; }
       .process-steps { grid-template-columns:1fr 1fr; gap:1.5rem; }
       .testi-grid { grid-template-columns:1fr; gap:1.1rem; }
       .about-images { height:280px; }
@@ -869,97 +919,71 @@
       <h2 class="section-title">Words Made <em>Beautiful</em></h2>
       <p class="section-sub">A glimpse into the world of Arabic calligraphy — each piece a unique expression of faith and craft.</p>
     </div>
-    <div class="gallery-grid">
 
+    <!-- Videos row -->
+    <div class="gallery-videos fade-up">
+      <div class="gal-video-wrap">
+        <div class="gal-tri-border"></div>
+        <video class="gal-video" src="D2.mp4" muted loop playsinline preload="metadata" aria-label="Calligraphy Process Video 1"></video>
+        <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Process</h4><p>Watch the Craft</p></div></div>
+      </div>
+      <div class="gal-video-wrap">
+        <div class="gal-tri-border"></div>
+        <video class="gal-video" src="D4.mp4" muted loop playsinline preload="metadata" aria-label="Calligraphy Process Video 2"></video>
+        <div class="gal-overlay"><div class="gal-meta"><h4>Artistry in Motion</h4><p>Behind the Scenes</p></div></div>
+      </div>
+    </div>
+
+    <!-- Images row 1: 3 per row -->
+    <div class="gallery-grid">
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Art" data-sub="Bespoke Calligraphy" aria-label="Preview Calligraphy Art">
-        <img src="cally%205.jpg"
-             alt="Arabic Calligraphy Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D1.jpeg" alt="Arabic Calligraphy Art" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Art</h4><p>Bespoke Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
+      </button>
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Design" data-sub="Arabic Calligraphy Design" aria-label="Preview Calligraphy Design">
-        <img src="cally%206.jpg"
-             alt="Arabic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D3.jpeg" alt="Arabic Calligraphy Design" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Design</h4><p>Arabic Calligraphy Design</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
+      </button>
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Frame" data-sub="Bespoke Frame" aria-label="Preview Calligraphy Frame">
-        <img src="cally%207.jpg"
-             alt="Bespoke Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D5.jpeg" alt="Bespoke Calligraphy Frame" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Frame</h4><p>Bespoke Frame</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
+      </button>
 
+      <!-- Images row 2: 3 per row -->
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wall Art" data-sub="Calligraphy Wall Art" aria-label="Preview Wall Art">
-        <img src="cally3.jpg"
-             alt="Calligraphy Wall Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D6.jpeg" alt="Calligraphy Wall Art" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Wall Art</h4><p>Calligraphy Wall Art</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
+      </button>
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Islamic Design" data-sub="Arabic Calligraphy" aria-label="Preview Islamic Design">
-        <img src="cally4.jpg"
-             alt="Islamic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D7.jpeg" alt="Islamic Calligraphy Design" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Islamic Design</h4><p>Arabic Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
+      </button>
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Quranic Verse" data-sub="Calligraphy Print" aria-label="Preview Quranic Verse">
-        <img src="cally5.jpg"
-             alt="Quranic Verse Calligraphy" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D8.jpeg" alt="Quranic Verse Calligraphy" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Quranic Verse</h4><p>Calligraphy Print</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
+      </button>
 
-      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Frame Design" data-sub="Premium Calligraphy Frame" aria-label="Preview Frame Design">
-        <img src="cally7.jpg"
-             alt="Premium Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
-        <div class="gal-overlay"><div class="gal-meta"><h4>Frame Design</h4><p>Premium Calligraphy Frame</p></div></div>
-        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Arabic Script Art" data-sub="Handcrafted Calligraphy" aria-label="Preview Arabic Script Art">
-        <img src="cally8.jpg"
-             alt="Arabic Script Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
-        <div class="gal-overlay"><div class="gal-meta"><h4>Arabic Script Art</h4><p>Handcrafted Calligraphy</p></div></div>
-        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
+      <!-- Images row 3 -->
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Handcrafted Piece" data-sub="Custom Calligraphy" aria-label="Preview Handcrafted Piece">
-        <img src="cally9.jpg"
-             alt="Handcrafted Calligraphy" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
+        <img src="D9.jpeg" alt="Handcrafted Calligraphy" loading="lazy"
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Handcrafted Piece</h4><p>Custom Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wedding Invitation" data-sub="Arabic Script Invitation" aria-label="Preview Wedding Invitation">
-        <img src="invita.jpg"
-             alt="Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
-        <div class="gal-overlay"><div class="gal-meta"><h4>Wedding Invitation</h4><p>Arabic Script Invitation</p></div></div>
-        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </button>
-
-      <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Bespoke Invitation" data-sub="Calligraphy Wedding Card" aria-label="Preview Bespoke Invitation">
-        <img src="invita2.jpg"
-             alt="Bespoke Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
-        <div class="gal-overlay"><div class="gal-meta"><h4>Bespoke Invitation</h4><p>Calligraphy Wedding Card</p></div></div>
-        <div class="gal-zoom"><i class="fas fa-expand"></i></div>
-      </button>
-
     </div>
+
     <div style="text-align:center; margin-top:2.5rem;">
       <a href="https://wa.me/2349023223267?text=As-salamu%20alaykum!%20I%20would%20like%20to%20see%20more%20of%20your%20work." class="btn btn-gold" target="_blank" rel="noopener">
         <i class="fab fa-whatsapp"></i> Request Full Portfolio
@@ -1317,6 +1341,14 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+// Video hover play/pause
+document.querySelectorAll('.gal-video-wrap').forEach(function(wrap) {
+  var vid = wrap.querySelector('video');
+  if (!vid) return;
+  wrap.addEventListener('mouseenter', function() { vid.play(); });
+  wrap.addEventListener('mouseleave', function() { vid.pause(); vid.currentTime = 0; });
+});
 
 // Hero elements appear on load
 window.addEventListener('DOMContentLoaded', () => {
