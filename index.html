@@ -138,7 +138,7 @@
 
     /* ─── HERO ───────────────────────────────────────────────── */
     .hero {
-      min-height:5vh; background:var(--g-dark); position:relative;
+      min-height:20vh; background:var(--g-dark); position:relative;
       display:flex; align-items:center; overflow:hidden;
     }
     .hero-bg {
@@ -160,7 +160,7 @@
     .hero-content {
       position:relative; z-index:2; width:100%;
       display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;
-      padding:1rem 2rem 1rem; max-width:1180px; margin:0 auto;
+      padding:4rem 2rem 1.5rem; max-width:1180px; margin:0 auto;
     }
     .hero-text .hero-eyebrow {
       color:var(--gold); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
@@ -208,7 +208,7 @@
     .hero-badge .transl { font-size:.55rem; color:rgba(247,242,231,.55); letter-spacing:.03em; }
     .hero-scroll {
       position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
-      z-index:2; display:none; flex-direction:column; align-items:center; gap:.4rem;
+      z-index:2; display:flex; flex-direction:column; align-items:center; gap:.4rem;
       color:rgba(247,242,231,.45); font-size:.7rem; letter-spacing:.12em; text-transform:uppercase;
     }
     .hero-scroll i { font-size:.85rem; }
