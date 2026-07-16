@@ -311,7 +311,10 @@
     .gal-item {
       position:relative; overflow:hidden; border-radius:var(--radius-sm);
       cursor:pointer; background:var(--g-primary);
+      appearance:none; border:none; padding:0; text-align:left;
+      font:inherit; color:inherit; width:100%; height:100%;
     }
+    .gal-item:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
     .gal-item:nth-child(1) { grid-column:span 2; }
     .gal-item img {
       width:100%; height:100%; object-fit:cover; display:block;
@@ -393,6 +396,7 @@
       font-size:.8rem; transition:all .3s ease;
     }
     .faq-item.active .faq-icon { background:var(--gold); color:white; transform:rotate(45deg); }
+    .faq-q:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
     .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
     .faq-item.active .faq-a { max-height:200px; }
     .faq-a p { padding-bottom:1.4rem; color:#5a5a5a; line-height:1.72; font-size:.93rem; }
@@ -445,6 +449,8 @@
       justify-content:center; gap:.5rem; transition:all .28s ease; margin-top:.4rem;
     }
     .form-submit:hover { background:var(--gold-lt); transform:translateY(-2px); box-shadow:0 10px 28px rgba(196,150,59,.4); }
+    .field-err { color:#e74c3c; font-size:.76rem; margin-top:.25rem; display:block; min-height:0; }
+    input[aria-invalid="true"], select[aria-invalid="true"] { border-color:#e74c3c !important; }
 
     /* ─── FOOTER ─────────────────────────────────────────────── */
     .footer {
@@ -557,9 +563,10 @@
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width:1024px) {
       .hero-content { grid-template-columns:1fr; max-width:680px; }
-      .hero-visual { display:none; }
+      .hero-visual { display:flex; justify-content:center; margin-top:2rem; }
+      .hero-ring { width:280px; height:280px; }
       .about-grid { grid-template-columns:1fr; gap:3rem; }
-      .about-images { display:none; }
+      .about-images { display:block; height:400px; }
       .testi-grid { grid-template-columns:1fr 1fr; }
       .footer-grid { grid-template-columns:1fr 1fr; gap:2.5rem; }
     }
@@ -567,23 +574,29 @@
       .nav-links { display:none; }
       .hamburger { display:flex; padding:.5rem; }
       .section { padding:3.5rem 1.1rem; }
-      .hero-content { padding:6.5rem 1.1rem 3.5rem; gap:2.5rem; }
+      .hero-content { padding:6.5rem 1.1rem 3.5rem; gap:2rem; }
       .hero-text h1 { font-size:clamp(2rem,7vw,3rem); }
       .hero-text p { font-size:.95rem; }
-      .hero-btns { flex-direction:column; }
-      .hero-btns .btn { width:100%; justify-content:center; padding:1rem 1.5rem; }
-      .services-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .hero-btns { flex-direction:row; flex-wrap:wrap; }
+      .hero-btns .btn { flex:1 1 45%; justify-content:center; padding:.85rem 1.2rem; font-size:.85rem; }
+      .hero-ring { width:220px; height:220px; }
+      .hero-badge { width:90px; height:90px; }
+      .hero-badge .arabic { font-size:.9rem; }
+      .services-grid { grid-template-columns:1fr 1fr; gap:1.1rem; }
       .service-card { padding:1.6rem 1.4rem; }
       .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:140px; gap:.5rem; }
       .gal-item:nth-child(1) { grid-column:span 2; }
       .process-steps { grid-template-columns:1fr 1fr; gap:1.5rem; }
       .process-steps::before { display:none; }
-      .testi-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .testi-grid { grid-template-columns:1fr 1fr; gap:1.1rem; }
       .testi-card { padding:1.4rem; }
       .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
       .form-box { padding:1.5rem; }
-      .footer-grid { grid-template-columns:1fr; gap:2rem; margin-bottom:2rem; }
+      .footer-grid { grid-template-columns:1fr 1fr; gap:2rem; margin-bottom:2rem; }
       .footer { padding:3rem 1.1rem 1.2rem; }
+      .about-images { height:340px; }
+      .about-img-main { width:65%; height:80%; }
+      .about-img-sec { width:50%; height:50%; }
       .about-stats { grid-template-columns:repeat(3,1fr); gap:1rem; }
       .stat h3 { font-size:1.7rem; }
       .stat p { font-size:.75rem; }
@@ -601,9 +614,18 @@
       .section { padding:3rem 1rem; }
       .hero-content { padding:6rem 1rem 3rem; }
       .hero-text h1 { font-size:clamp(1.7rem,8vw,2.5rem); }
-      .gallery-grid { grid-template-columns:1fr; grid-auto-rows:200px; }
-      .gal-item:nth-child(1) { grid-column:span 1; }
-      .process-steps { grid-template-columns:1fr; gap:2rem; }
+      .hero-visual { margin-top:1.5rem; }
+      .hero-ring { width:180px; height:180px; }
+      .hero-badge { width:76px; height:76px; bottom:-8px; right:5px; }
+      .hero-badge .arabic { font-size:.8rem; }
+      .services-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .gallery-grid { grid-template-columns:1fr 1fr; grid-auto-rows:160px; gap:.5rem; }
+      .gal-item:nth-child(1) { grid-column:span 2; }
+      .process-steps { grid-template-columns:1fr 1fr; gap:1.5rem; }
+      .testi-grid { grid-template-columns:1fr; gap:1.1rem; }
+      .about-images { height:280px; }
+      .about-img-main { width:60%; height:75%; }
+      .about-img-sec { width:48%; height:48%; }
       .about-stats { grid-template-columns:1fr 1fr; }
       .about-stats .stat:last-child { grid-column:span 2; text-align:center; }
       .contact-items { gap:.9rem; }
@@ -634,6 +656,8 @@
       .service-card h3 { font-size:1.1rem; }
       .btn { padding:.7rem 1.4rem; font-size:.85rem; }
       .wa-chat { width:calc(100vw - 1rem); right:0; }
+      .hero-ring { width:150px; height:150px; }
+      .hero-badge { width:65px; height:65px; }
     }
     @media (prefers-reduced-motion:reduce) {
       *, *::before, *::after {
@@ -647,7 +671,7 @@
 <body>
 
 <!-- ══════ MOBILE MENU ══════════════════════════════════════════ -->
-<div class="mobile-menu" id="mobMenu" aria-hidden="true">
+<div class="mobile-menu" id="mobMenu" aria-hidden="true" inert>
   <button class="mob-close" id="mobClose" type="button" onclick="toggleMob()" aria-label="Close menu" tabindex="-1"><i class="fas fa-times"></i></button>
   <a href="#about"        tabindex="-1" onclick="toggleMob()">About</a>
   <a href="#services"     tabindex="-1" onclick="toggleMob()">Services</a>
@@ -851,7 +875,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Art" data-sub="Bespoke Calligraphy" aria-label="Preview Calligraphy Art">
         <img src="cally%205.jpg"
              alt="Arabic Calligraphy Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Art</h4><p>Bespoke Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -859,7 +883,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Design" data-sub="Arabic Calligraphy Design" aria-label="Preview Calligraphy Design">
         <img src="cally%206.jpg"
              alt="Arabic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Design</h4><p>Arabic Calligraphy Design</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -867,7 +891,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Calligraphy Frame" data-sub="Bespoke Frame" aria-label="Preview Calligraphy Frame">
         <img src="cally%207.jpg"
              alt="Bespoke Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Frame</h4><p>Bespoke Frame</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -875,7 +899,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wall Art" data-sub="Calligraphy Wall Art" aria-label="Preview Wall Art">
         <img src="cally3.jpg"
              alt="Calligraphy Wall Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Wall Art</h4><p>Calligraphy Wall Art</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -883,7 +907,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Islamic Design" data-sub="Arabic Calligraphy" aria-label="Preview Islamic Design">
         <img src="cally4.jpg"
              alt="Islamic Calligraphy Design" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Islamic Design</h4><p>Arabic Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -891,7 +915,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Quranic Verse" data-sub="Calligraphy Print" aria-label="Preview Quranic Verse">
         <img src="cally5.jpg"
              alt="Quranic Verse Calligraphy" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Quranic Verse</h4><p>Calligraphy Print</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -899,7 +923,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Frame Design" data-sub="Premium Calligraphy Frame" aria-label="Preview Frame Design">
         <img src="cally7.jpg"
              alt="Premium Calligraphy Frame" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Frame Design</h4><p>Premium Calligraphy Frame</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -907,7 +931,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Arabic Script Art" data-sub="Handcrafted Calligraphy" aria-label="Preview Arabic Script Art">
         <img src="cally8.jpg"
              alt="Arabic Script Art" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Arabic Script Art</h4><p>Handcrafted Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -915,7 +939,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Handcrafted Piece" data-sub="Custom Calligraphy" aria-label="Preview Handcrafted Piece">
         <img src="cally9.jpg"
              alt="Handcrafted Calligraphy" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Handcrafted Piece</h4><p>Custom Calligraphy</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </div>
@@ -923,7 +947,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Wedding Invitation" data-sub="Arabic Script Invitation" aria-label="Preview Wedding Invitation">
         <img src="invita.jpg"
              alt="Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-primary)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Wedding Invitation</h4><p>Arabic Script Invitation</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </button>
@@ -931,7 +955,7 @@
       <button class="gal-item fade-up" type="button" onclick="openLB(this)" data-title="Bespoke Invitation" data-sub="Calligraphy Wedding Card" aria-label="Preview Bespoke Invitation">
         <img src="invita2.jpg"
              alt="Bespoke Wedding Invitation" loading="lazy"
-             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick');" />
+             onerror="this.parentElement.dataset.broken='true'; this.style.display='none'; this.parentElement.style.background='var(--g-medium)'; this.parentElement.removeAttribute('onclick'); this.parentElement.disabled=true; this.parentElement.setAttribute('aria-disabled','true');" />
         <div class="gal-overlay"><div class="gal-meta"><h4>Bespoke Invitation</h4><p>Calligraphy Wedding Card</p></div></div>
         <div class="gal-zoom"><i class="fas fa-expand"></i></div>
       </button>
@@ -1029,51 +1053,51 @@
     <div class="faq-list">
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1" onclick="toggleFaq(this)">
           Do you ship outside Lagos?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>Yes! We deliver across Nigeria — Abuja, Port Harcourt, Ibadan, Kano, and beyond. International shipping is available on request. Delivery timelines and charges vary by location; contact us for a quote.</p></div>
+        <div class="faq-a" id="faq-a1" role="region"><p>Yes! We deliver across Nigeria — Abuja, Port Harcourt, Ibadan, Kano, and beyond. International shipping is available on request. Delivery timelines and charges vary by location; contact us for a quote.</p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2" onclick="toggleFaq(this)">
           How long does it take to complete an order?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>Standard orders are completed within 5–10 business days depending on complexity. Rush orders are available for an additional fee. Wedding invitations and bulk orders typically require 2 weeks lead time.</p></div>
+        <div class="faq-a" id="faq-a2" role="region"><p>Standard orders are completed within 5–10 business days depending on complexity. Rush orders are available for an additional fee. Wedding invitations and bulk orders typically require 2 weeks lead time.</p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3" onclick="toggleFaq(this)">
           Can I choose which Quranic verse or text to use?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>Absolutely — all our pieces are fully bespoke. Choose any Quranic verse, dua, name, or meaningful phrase in Arabic. We'll verify accuracy and work with you to ensure the calligraphy is both correct and beautiful.</p></div>
+        <div class="faq-a" id="faq-a3" role="region"><p>Absolutely — all our pieces are fully bespoke. Choose any Quranic verse, dua, name, or meaningful phrase in Arabic. We'll verify accuracy and work with you to ensure the calligraphy is both correct and beautiful.</p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4" onclick="toggleFaq(this)">
           What payment methods do you accept?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>We accept bank transfers, mobile payments (Opay, PalmPay, Moniepoint), and cash on delivery within Lagos. A 50% deposit is required before work begins, with the balance paid on delivery.</p></div>
+        <div class="faq-a" id="faq-a4" role="region"><p>We accept bank transfers, mobile payments (Opay, PalmPay, Moniepoint), and cash on delivery within Lagos. A 50% deposit is required before work begins, with the balance paid on delivery.</p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5" onclick="toggleFaq(this)">
           Do you offer bulk orders for events?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>Yes — we offer special pricing for bulk orders such as wedding souvenirs, Ramadan gifts, aqiqah favours, and corporate gift sets. Contact us with your requirements for a custom quote.</p></div>
+        <div class="faq-a" id="faq-a5" role="region"><p>Yes — we offer special pricing for bulk orders such as wedding souvenirs, Ramadan gifts, aqiqah favours, and corporate gift sets. Contact us with your requirements for a custom quote.</p></div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a6" onclick="toggleFaq(this)">
           Can I see a preview before you finalise my order?
           <span class="faq-icon"><i class="fas fa-plus"></i></span>
         </button>
-        <div class="faq-a"><p>Always! We send a digital preview via WhatsApp before finalising any piece. Your complete satisfaction and approval is our priority — we don't proceed without your sign-off.</p></div>
+        <div class="faq-a" id="faq-a6" role="region"><p>Always! We send a digital preview via WhatsApp before finalising any piece. Your complete satisfaction and approval is our priority — we don't proceed without your sign-off.</p></div>
       </div>
 
     </div>
@@ -1119,33 +1143,37 @@
 
       <div class="form-box fade-up">
         <h3>Send an Enquiry</h3>
-        <div class="fg">
-          <label for="fName">Your Name</label>
-          <input type="text" id="fName" placeholder="e.g. Aisha Bello" autocomplete="name" />
-        </div>
-        <div class="fg">
-          <label for="fPhone">Phone / WhatsApp</label>
-          <input type="tel" id="fPhone" placeholder="e.g. 08012345678" autocomplete="tel" />
-        </div>
-        <div class="fg">
-          <label for="fService">Service Interested In</label>
-          <select id="fService">
-            <option value="">Select a service…</option>
-            <option>Bespoke Arabic Calligraphy Frame</option>
-            <option>Arabic Calligraphy Design</option>
-            <option>Arabic Customised Gift Item</option>
-            <option>Wedding Invitation</option>
-            <option>Bulk / Corporate Order</option>
-            <option>Other / Custom Request</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label for="fMsg">Your Message</label>
-          <textarea id="fMsg" placeholder="Tell us your idea — the verse, size, occasion, colours…"></textarea>
-        </div>
-        <button class="form-submit" onclick="submitForm()">
-          <i class="fab fa-whatsapp"></i> Send via WhatsApp
-        </button>
+        <form id="enquiryForm" novalidate>
+          <div class="fg">
+            <label for="fName">Your Name</label>
+            <input type="text" id="fName" name="name" placeholder="e.g. Aisha Bello" autocomplete="name" required aria-required="true" aria-describedby="fName-err" />
+            <span id="fName-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="fg">
+            <label for="fPhone">Phone / WhatsApp</label>
+            <input type="tel" id="fPhone" name="phone" placeholder="e.g. 08012345678" autocomplete="tel" />
+          </div>
+          <div class="fg">
+            <label for="fService">Service Interested In</label>
+            <select id="fService" name="service" required aria-required="true" aria-describedby="fService-err">
+              <option value="">Select a service…</option>
+              <option>Bespoke Arabic Calligraphy Frame</option>
+              <option>Arabic Calligraphy Design</option>
+              <option>Arabic Customised Gift Item</option>
+              <option>Wedding Invitation</option>
+              <option>Bulk / Corporate Order</option>
+              <option>Other / Custom Request</option>
+            </select>
+            <span id="fService-err" class="field-err" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="fg">
+            <label for="fMsg">Your Message</label>
+            <textarea id="fMsg" name="message" placeholder="Tell us your idea — the verse, size, occasion, colours…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            <i class="fab fa-whatsapp"></i> Send via WhatsApp
+          </button>
+        </form>
       </div>
 
     </div>
@@ -1196,7 +1224,7 @@
 
 <!-- ══════ WHATSAPP CHAT WIDGET ══════════════════════════════════ -->
 <div class="wa-float" role="complementary" aria-label="WhatsApp Chat">
-  <div class="wa-chat" id="waChat" role="dialog" aria-label="Chat with us on WhatsApp" aria-hidden="true">
+  <div class="wa-chat" id="waChat" role="dialog" aria-label="Chat with us on WhatsApp" aria-hidden="true" inert>
     <div class="chat-head">
       <div class="chat-av" aria-hidden="true">L</div>
       <div class="chat-head-info">
@@ -1257,7 +1285,23 @@ window.addEventListener('scroll', () => {
 
 /* ── Mobile menu ─────────────────────────────────────────────── */
 function toggleMob() {
-  document.getElementById('mobMenu').classList.toggle('open');
+  const menu  = document.getElementById('mobMenu');
+  const toggle = document.getElementById('mobToggle');
+  const isOpen = menu.classList.toggle('open');
+
+  menu.setAttribute('aria-hidden', String(!isOpen));
+  toggle.setAttribute('aria-expanded', String(isOpen));
+
+  if (isOpen) {
+    menu.removeAttribute('inert');
+    menu.querySelectorAll('a, button').forEach(el => el.removeAttribute('tabindex'));
+    var firstLink = menu.querySelector('a');
+    if (firstLink) firstLink.focus();
+  } else {
+    menu.setAttribute('inert', '');
+    menu.querySelectorAll('a, button').forEach(el => el.setAttribute('tabindex', '-1'));
+    toggle.focus();
+  }
 }
 
 /* ── Intersection Observer (fade-up) ─────────────────────────── */
@@ -1286,8 +1330,14 @@ window.addEventListener('DOMContentLoaded', () => {
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const open = item.classList.contains('active');
-  document.querySelectorAll('.faq-item.active').forEach(i => i.classList.remove('active'));
-  if (!open) item.classList.add('active');
+  document.querySelectorAll('.faq-item.active').forEach(i => {
+    i.classList.remove('active');
+    i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+  });
+  if (!open) {
+    item.classList.add('active');
+    btn.setAttribute('aria-expanded', 'true');
+  }
 }
 
 /* ── WhatsApp chat widget ────────────────────────────────────── */
@@ -1295,11 +1345,22 @@ let chatVisible = false;
 
 function toggleChat() {
   chatVisible = !chatVisible;
-  const el = document.getElementById('waChat');
+  const el    = document.getElementById('waChat');
+  const btn   = document.getElementById('waToggle');
   el.classList.toggle('open', chatVisible);
-  // hide notification badge once opened
-  const notif = document.querySelector('.wa-notif');
-  if (chatVisible && notif) notif.style.display = 'none';
+  btn.setAttribute('aria-expanded', String(chatVisible));
+  el.setAttribute('aria-hidden', String(!chatVisible));
+
+  if (chatVisible) {
+    el.removeAttribute('inert');
+    var notif = document.querySelector('.wa-notif');
+    if (notif) notif.style.display = 'none';
+    var firstOpt = el.querySelector('.chat-opt');
+    if (firstOpt) firstOpt.focus();
+  } else {
+    el.setAttribute('inert', '');
+    btn.focus();
+  }
 }
 
 const WA_PHONE = '2349023223267';
@@ -1317,16 +1378,38 @@ function openWA(service) {
 }
 
 /* ── Contact form → WhatsApp ─────────────────────────────────── */
+document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  submitForm();
+});
+
 function submitForm() {
-  const name    = document.getElementById('fName').value.trim();
-  const phone   = document.getElementById('fPhone').value.trim();
-  const service = document.getElementById('fService').value;
-  const msg     = document.getElementById('fMsg').value.trim();
+  var nameEl    = document.getElementById('fName');
+  var phoneEl   = document.getElementById('fPhone');
+  var serviceEl = document.getElementById('fService');
+  var msgEl     = document.getElementById('fMsg');
 
-  if (!name)    { showAlert('Please enter your name.', 'fName');    return; }
-  if (!service) { showAlert('Please select a service.', 'fService'); return; }
+  nameEl.removeAttribute('aria-invalid');
+  serviceEl.removeAttribute('aria-invalid');
 
-  const text = [
+  var name    = nameEl.value.trim();
+  var phone   = phoneEl.value.trim();
+  var service = serviceEl.value;
+  var msg     = msgEl.value.trim();
+
+  var valid = true;
+
+  if (!name) {
+    showAlert('Please enter your name.', 'fName', 'fName-err');
+    valid = false;
+  }
+  if (!service) {
+    showAlert('Please select a service.', 'fService', 'fService-err');
+    valid = false;
+  }
+  if (!valid) return;
+
+  var text = [
     'As-salamu alaykum! My name is ' + name + '.',
     '',
     'Service: ' + service,
@@ -1337,48 +1420,89 @@ function submitForm() {
   window.open('https://wa.me/' + WA_PHONE + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
 }
 
-function showAlert(message, fieldId) {
-  const field = document.getElementById(fieldId);
+function showAlert(message, fieldId, errId) {
+  var field = document.getElementById(fieldId);
+  var errEl = document.getElementById(errId);
+  field.setAttribute('aria-invalid', 'true');
   field.style.borderColor = '#e74c3c';
   field.focus();
-  setTimeout(() => field.style.borderColor = '', 2500);
-  // brief inline message
-  const existing = field.parentElement.querySelector('.field-err');
-  if (existing) existing.remove();
-  const err = document.createElement('span');
-  err.className = 'field-err';
-  err.style.cssText = 'color:#e74c3c;font-size:.76rem;margin-top:.25rem;display:block;';
-  err.textContent = message;
-  field.parentElement.appendChild(err);
-  setTimeout(() => err.remove(), 3000);
+  if (errEl) errEl.textContent = message;
+  setTimeout(function() {
+    field.style.borderColor = '';
+    field.removeAttribute('aria-invalid');
+    if (errEl) errEl.textContent = '';
+  }, 3000);
 }
 
 /* ── Gallery lightbox ────────────────────────────────────────── */
+let lbReturnFocus = null;
+
 function openLB(item) {
-  const img   = item.querySelector('img');
-  const lbox  = document.getElementById('lbox');
-  const lbImg = document.getElementById('lbImg');
-  lbImg.src   = img.src.replace(/w=\d+/, 'w=1200');
-  lbImg.alt   = img.alt;
+  if (!item) return;
+  var img = item.querySelector('img');
+  if (!img || !img.src || item.dataset.broken === 'true') return;
+  var lbox  = document.getElementById('lbox');
+  var lbImg = document.getElementById('lbImg');
+  lbImg.src = img.src.replace(/w=\d+/, 'w=1200');
+  lbImg.alt = img.alt;
   lbox.classList.add('open');
   document.body.style.overflow = 'hidden';
+  lbReturnFocus = item;
+  var closeBtn = lbox.querySelector('.lb-close');
+  if (closeBtn) closeBtn.focus();
 }
 
 function closeLB(e) {
-  if (!e || e.target === document.getElementById('lbox') || e.target.closest('.lb-close')) {
+  if (!e || e.target === document.getElementById('lbox') || e.target.closest('.lb-close') || (e.key && e.key === 'Escape')) {
     document.getElementById('lbox').classList.remove('open');
     document.body.style.overflow = '';
+    if (lbReturnFocus) { lbReturnFocus.focus(); lbReturnFocus = null; }
   }
 }
 
-// Keyboard: Escape closes lightbox / mobile menu
-document.addEventListener('keydown', (e) => {
+function trapLBFocus(e) {
+  var lbox = document.getElementById('lbox');
+  if (!lbox.classList.contains('open')) return;
+  if (e.key !== 'Tab') return;
+  var focusable = lbox.querySelectorAll('.lb-close');
+  if (!focusable.length) return;
+  var first = focusable[0], last = focusable[focusable.length - 1];
+  if (e.shiftKey) {
+    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+  } else {
+    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+}
+
+// Keyboard: Escape closes lightbox / mobile menu / chat; Tab trap in lightbox
+document.addEventListener('keydown', function(e) {
+  trapLBFocus(e);
   if (e.key === 'Escape') {
-    closeLB();
-    document.getElementById('mobMenu').classList.remove('open');
+    var lbox = document.getElementById('lbox');
+    if (lbox.classList.contains('open')) { closeLB(e); return; }
+    var mob = document.getElementById('mobMenu');
+    if (mob.classList.contains('open')) { toggleMob(); return; }
     if (chatVisible) toggleChat();
   }
 });
+
+// Bypass smooth scroll when prefers-reduced-motion is active
+(function() {
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function onMatch() {
+    if (mq.matches) {
+      document.documentElement.style.scrollBehavior = 'auto';
+      document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+        a.addEventListener('click', function(ev) {
+          var target = document.querySelector(a.getAttribute('href'));
+          if (target) { ev.preventDefault(); target.scrollIntoView({ behavior: 'auto', block: 'start' }); }
+        });
+      });
+    }
+  }
+  onMatch();
+  mq.addEventListener('change', onMatch);
+})();
 </script>
 </body>
 </html>
