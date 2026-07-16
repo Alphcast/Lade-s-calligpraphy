@@ -329,9 +329,9 @@
       position:absolute; inset:0; z-index:3; pointer-events:none;
       border:4px solid transparent;
       background:linear-gradient(var(--g-primary), var(--g-primary)) padding-box,
-                 conic-gradient(from var(--tri-angle,0deg), var(--g-primary) 0%, var(--gold) 6%, var(--gold-lt) 12%, var(--g-primary) 18%) border-box;
+                 conic-gradient(from var(--tri-angle,0deg), var(--g-primary) 0%, rgba(255,255,255,.9) 5%, rgba(255,255,255,.5) 12%, var(--g-primary) 18%) border-box;
       border-radius:var(--radius-sm);
-      animation:triSpin 2.5s linear infinite;
+      animation:triSpin 1.2s linear infinite;
     }
     @property --tri-angle {
       syntax:'<angle>';
