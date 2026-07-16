@@ -185,7 +185,7 @@
     /* Hero visual side */
     .hero-visual { display:flex; justify-content:center; align-items:center; position:relative; }
     .hero-ring {
-      width:288px; height:288px; border-radius:50%;
+      width:360px; height:360px; border-radius:50%;
       border:3px solid var(--gold); padding:6px; position:relative;
       background:linear-gradient(135deg, rgba(196,150,59,.15), transparent);
     }
@@ -231,12 +231,12 @@
     .about-images { position:relative; height:480px; }
     .about-img-main {
       position:absolute; top:0; left:0; width:56%; height:66%;
-      object-fit:cover; border-radius:var(--radius-sm);
+      object-fit:contain; border-radius:var(--radius-sm);
       border:3px solid var(--gold); background:var(--g-medium);
     }
     .about-img-sec {
       position:absolute; bottom:0; right:0; width:42%; height:42%;
-      object-fit:cover; border-radius:var(--radius-sm);
+      object-fit:contain; border-radius:var(--radius-sm);
       border:3px solid var(--g-medium); background:var(--g-primary);
     }
     .about-corner {
