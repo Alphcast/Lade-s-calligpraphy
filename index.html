@@ -929,13 +929,13 @@
     <div class="gallery-videos fade-up">
       <button class="gal-video-wrap" type="button" onclick="openVLB('D2.mp4',this)" aria-label="Play Calligraphy Process Video 1">
         <div class="gal-tri-border"></div>
-        <video class="gal-video" src="D2.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
+        <video class="gal-video" src="D2.mp4" muted loop playsinline preload="auto" aria-hidden="true" onplay="this.muted=true"></video>
         <div class="gal-overlay"><div class="gal-meta"><h4>Calligraphy Process</h4><p>Watch the Craft</p></div></div>
         <div class="gal-zoom"><i class="fas fa-play"></i></div>
       </button>
       <button class="gal-video-wrap" type="button" onclick="openVLB('D4.mp4',this)" aria-label="Play Artistry in Motion Video 2">
         <div class="gal-tri-border"></div>
-        <video class="gal-video" src="D4.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
+        <video class="gal-video" src="D4.mp4" muted loop playsinline preload="auto" aria-hidden="true" onplay="this.muted=true"></video>
         <div class="gal-overlay"><div class="gal-meta"><h4>Artistry in Motion</h4><p>Behind the Scenes</p></div></div>
         <div class="gal-zoom"><i class="fas fa-play"></i></div>
       </button>
@@ -1044,28 +1044,37 @@
 
       <div class="testi-card fade-up">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"I ordered a Bismillah frame as a housewarming gift and the recipient was moved to tears. The craftsmanship is extraordinary — the gold lettering on deep green is absolutely breathtaking."</p>
+        <p class="testi-text">"I love the frame, it's very nice. May Allah make you happy always and preserve you upon goodness."</p>
         <div class="testi-author">
-          <div class="testi-av">F</div>
-          <div class="testi-info"><h5>Fatimah A.</h5><span>Lagos · Bespoke Frame</span></div>
+          <div class="testi-av">Q</div>
+          <div class="testi-info"><h5>Qudroh</h5><span>Client Review</span></div>
         </div>
       </div>
 
       <div class="testi-card fade-up">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"Lade's Calligraphy created the most stunning Nikah invitations for our wedding. Guests couldn't stop complimenting them. The Arabic script was elegant and delivery was on schedule."</p>
+        <p class="testi-text">"And thanks so much for the frame. It means a lot to me and it's so beautiful."</p>
         <div class="testi-author">
-          <div class="testi-av">K</div>
-          <div class="testi-info"><h5>Khadijah & Usman</h5><span>Abuja · Wedding Invitations</span></div>
+          <div class="testi-av">H</div>
+          <div class="testi-info"><h5>Habeebah</h5><span>Client Review</span></div>
         </div>
       </div>
 
       <div class="testi-card fade-up">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-text">"The personalised gift set for my mum's birthday was absolutely beautiful. She placed it as the centrepiece of her sitting room. I'll definitely be ordering again — best gift ever!"</p>
+        <p class="testi-text">"I got the gift you gave Sumayyah, it's so beautiful and 🌹. May Allah continue to bless your business. Aamin."</p>
         <div class="testi-author">
-          <div class="testi-av">A</div>
-          <div class="testi-info"><h5>Aisha M.</h5><span>Lagos · Gift Set</span></div>
+          <div class="testi-av">R</div>
+          <div class="testi-info"><h5>Romlah</h5><span>Client Review</span></div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"The gift is so beautiful and means everything to me — couldn't have asked for a better way to start our new chapter 🥰. Jazakumllahu Khairan jazaa."</p>
+        <div class="testi-author">
+          <div class="testi-av">S</div>
+          <div class="testi-info"><h5>Salaamat</h5><span>Client Review</span></div>
         </div>
       </div>
 
@@ -1292,7 +1301,7 @@
 <div class="lightbox" id="lbox" role="dialog" aria-modal="true" aria-label="Media preview" onclick="closeLB(event)">
   <button class="lb-close" onclick="closeLB()" aria-label="Close preview"><i class="fas fa-times"></i></button>
   <img class="lb-img" id="lbImg" src="" alt="Calligraphy preview" />
-  <video class="lb-video" id="lbVid" src="" controls playsinline preload="auto"></video>
+  <video class="lb-video" id="lbVid" src="" controls playsinline preload="auto" muted></video>
 </div>
 
 <!-- ══════ SCROLL TO TOP ═════════════════════════════════════════ -->
@@ -1354,7 +1363,7 @@ document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 document.querySelectorAll('.gal-video-wrap').forEach(function(wrap) {
   var vid = wrap.querySelector('video');
   if (!vid) return;
-  wrap.addEventListener('mouseenter', function() { vid.play(); });
+  wrap.addEventListener('mouseenter', function() { vid.muted = true; vid.play(); });
   wrap.addEventListener('mouseleave', function() { vid.pause(); vid.currentTime = 0; });
 });
 
@@ -1501,6 +1510,7 @@ function openVLB(src, item) {
   lbImg.classList.remove('active');
   lbImg.src = '';
   lbVid.src = src;
+  lbVid.muted = true;
   lbVid.classList.add('active');
   lbox.classList.add('open');
   document.body.style.overflow = 'hidden';
